@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions= {{}}>
         <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
         <Stack.Screen name="Form" component={Form} />
       </Stack.Navigator>
