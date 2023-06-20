@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput } from "react-native";
-import { inputStyles } from "../styles/inputStyles";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 
 const InputField = props => {
     const { label, placeholder = "" } = props;
@@ -18,5 +17,22 @@ const InputField = props => {
         </View>
     );
 };
+
+const inputStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginBottom: 16
+    },
+    labelText: {
+        marginBottom: 8,
+    },
+    textBox: {
+        borderWidth: 2,
+        borderStyle: "solid",
+        borderRadius: 4,
+        paddingHorizontal: 16,
+        paddingVertical: 4
+    }
+});
 
 export default InputField;
