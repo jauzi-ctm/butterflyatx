@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
 const InputField = props => {
-    const { label, placeholder = "" } = props;
+    const { label, placeholder = "", updateData } = props;
     const { container, labelText, textBox } = inputStyles;
 
     const [focus, setFocus] = useState(false);
@@ -13,6 +13,7 @@ const InputField = props => {
             <TextInput editable placeholder={placeholder}
                 onFocus={() => { setFocus(true) }}
                 onEndEditing={() => { setFocus(false) }}
+                onChangeText={text => { updateData(text, label) }}
                 style={[textBox, { borderColor: focus ? "black" : "gray" }]} />
         </View>
     );
