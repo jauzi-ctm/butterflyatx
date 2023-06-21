@@ -5,6 +5,7 @@ import ExploreEvents from './src/screens/ExploreEvents.js';
 import Form from './src/components/Form.js'; // Update the import statement
 import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
+import PostScreen from './src/screens/PostScreen.js';
 
 const Stack = createStackNavigator();
 const API_URL = "https://sheet.best/api/sheets/f11b44a1-6d15-430c-9ac2-b30911b4e72c"; // should move to .env
@@ -20,10 +21,10 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{}}>
         <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
-        <Stack.Screen name="Form">
-          {() => <Form title={"Add Event"}
+        <Stack.Screen name="individualForm">
+          {() => <Form title={"Create an Individual Event"}
             fields={addEventFormFields}
-            submitText={"Add"}
+            submitText={"Create"}
             submitForm={() => {
               axios.post(API_URL, formData).then(response => { // POST request to Google Sheets with the given form data
                 console.log("success!"); // request was successful
@@ -33,13 +34,14 @@ const App = () => {
             }}
             formData={formData} />}
         </Stack.Screen>
-        <Stack.Screen name="AnotherForm">
+        <Stack.Screen name="pickupForm">
           {() => <Form title={"Create a Pickup Game"}
             fields={startPickupGameFormFields}
             submitText={"Create"}
             submitForm={() => console.log(formData)}
             formData={formData} />}
         </Stack.Screen>
+        <Stack.Screen name= 'PostScreen' component={PostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

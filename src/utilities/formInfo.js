@@ -1,6 +1,7 @@
-const loginFormFields = [
-    { label: "Username" },
-    { label: "Password" }
+const userFormFields = [
+    { label: "First Name" },
+    { label: "Last Name" },
+    { label: "Age" },
 ];
 
 const addEventFormFields = [
@@ -33,4 +34,4 @@ const startPickupGameFormFields = [
     { label: "Location", type: "TextInput", placeholder: "123 Park Avenue" }
 ]
 
-export { loginFormFields, addEventFormFields, startPickupGameFormFields };
+export { userFormFields, addEventFormFields, startPickupGameFormFields };
