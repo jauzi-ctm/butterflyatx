@@ -4,11 +4,20 @@ const loginFormFields = [
 ];
 
 const addEventFormFields = [
-    { label: "Event Title", placeholder: "July 4th Firework Show" },
-    { label: "Description", placeholder: "Wow!" },
-    { label: "Date", placeholder: "07/04/2023" },
-    { label: "Time", placeholder: "09:00pm" },
-    { label: "Location", placeholder: "Brushy Creek Park" }
+    {
+        label: "Category",
+        type: "SelectList",
+        options: [
+            { value: "Pickup Game" },
+            { value: "Individual Event" },
+            { value: "Community Event" }
+        ]
+    },
+    { label: "Event Title", type: "TextInput", placeholder: "July 4th Firework Show" },
+    { label: "Description", type: "TextInput", placeholder: "Wow!" },
+    { label: "Date", type: "TextInput", placeholder: "07/04/2023" },
+    { label: "Time", type: "TextInput", placeholder: "09:00pm" },
+    { label: "Location", type: "TextInput", placeholder: "Brushy Creek Park" }
 ];
 
 const startPickupGameFormFields = [
