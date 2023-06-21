@@ -11,4 +11,26 @@ const addEventFormFields = [
     { label: "Location", placeholder: "Brushy Creek Park" }
 ];
 
-export { loginFormFields, addEventFormFields };
+const startPickupGameFormFields = [
+    {
+        label: "Category",
+        type: "SelectList",
+        options: [
+            { value: "Frisbee" },
+            { value: "Football" },
+            { value: "Basketball" },
+            { value: "Baseball" },
+            { value: "Chess" },
+            { value: "Tennis" },
+            { value: "Badminton" },
+            { value: "Jogging" },
+            { value: "Swimming" },
+            { value: "Volleyball" }
+        ]
+    },
+    { label: "Date", type: "TextInput", placeholder: "06/21/2023" },
+    { label: "Time", type: "TextInput", placeholder: "3:00pm" },
+    { label: "Location", type: "TextInput", placeholder: "123 Park Avenue" }
+]
+
+export { loginFormFields, addEventFormFields, startPickupGameFormFields };

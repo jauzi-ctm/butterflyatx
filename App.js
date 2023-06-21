@@ -3,16 +3,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ExploreEvents from './src/components/ExploreEvents.js';
 import Form from './src/components/Form.js'; // Update the import statement
-import { addEventFormFields } from "./src/utilities/formInfo.js";
+import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
 
 const Stack = createStackNavigator();
-const API_URL = "https://sheet.best/api/sheets/f11b44a1-6d15-430c-9ac2-b30911b4e72c";
+const API_URL = "https://sheet.best/api/sheets/f11b44a1-6d15-430c-9ac2-b30911b4e72c"; // should move to .env
 
 const App = () => {
   const formData = {};
 
-  for (inputField of addEventFormFields) {
+  for (inputField of startPickupGameFormFields) {
     formData[inputField.label] = "";
   }
 
@@ -25,16 +25,19 @@ const App = () => {
             fields={addEventFormFields}
             submitText={"Add"}
             submitForm={() => {
-              console.log("New Event:");
-              for (inputField of addEventFormFields) {
-                console.log(inputField.label, formData[inputField.label]);
-              }
-              axios.post(API_URL, formData).then(response => {
-                console.log("success!");
+              axios.post(API_URL, formData).then(response => { // POST request to Google Sheets with the given form data
+                console.log("success!"); // request was successful
               }, reject => {
-                console.log("failed");
+                console.log("failed"); // there was an error
               });
             }}
+            formData={formData} />}
+        </Stack.Screen>
+        <Stack.Screen name="AnotherForm">
+          {() => <Form title={"Create a Pickup Game"}
+            fields={startPickupGameFormFields}
+            submitText={"Create"}
+            submitForm={() => console.log(formData)}
             formData={formData} />}
         </Stack.Screen>
       </Stack.Navigator>

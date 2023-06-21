@@ -23,7 +23,7 @@ const HomeScreen = () => {
   // Function to handle the button press for PostButton
   const handlePostButtonPress = () => {
     // Navigate to the Form screen
-    navigation.navigate('Form');
+    navigation.navigate('AnotherForm');
   };
 
   return (

@@ -6,14 +6,16 @@ const Form = props => {
     const { title, fields, submitText = "Submit", submitForm, formData } = props;
     const { container, titleText } = formStyles;
 
-    const updateData = (text, label) => {
+    // function to update the given formData prop
+    const updateData = (label, text) => {
         formData[label] = text;
     };
 
     return (
         <View style={container}>
             <Text style={titleText}>{title}</Text>
-            <FlatList data={fields} renderItem={({ item }) => <InputField label={item.label} placeholder={item.placeholder} updateData={updateData} />} />
+            <FlatList data={fields} // render the input fields as a flat list
+                renderItem={({ item }) => <InputField label={item.label} type={item.type} options={item.options} placeholder={item.placeholder} updateData={updateData} />} />
             <Button title={submitText} color={"gray"} onPress={submitForm} />
         </View>
     );
