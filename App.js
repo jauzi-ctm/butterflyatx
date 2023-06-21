@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ExploreEvents from './src/components/ExploreEvents.js';
+import ExploreEvents from './src/screens/ExploreEvents.js';
 import Form from './src/components/Form.js'; // Update the import statement
 import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
