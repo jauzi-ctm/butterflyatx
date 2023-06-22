@@ -25,12 +25,18 @@ const ExploreEvents = () => {
     whatAction: () => navigation.navigate('PostScreen'),  
   };
 
+  const handleUserInfoPress = {
+    label: 'Settings',
+    whatAction: () => navigation.navigate('UserInfo'),  
+  };
+
   return (
     <>
       <ButtonUjval data={handlePickupGamesPress} />
       <ButtonUjval data={handleIndividualEventsPress} />
       <ButtonUjval data={handleCommunityEventsPress} />
       <ButtonUjval data={handlePostButtonPress} />
+      <ButtonUjval data={handleUserInfoPress} />
     </>
   );
 };

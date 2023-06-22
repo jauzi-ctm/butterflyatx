@@ -1,37 +1,7 @@
-import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingHorizontal: 8,
-  },
-});
-
-const handleChangeText = (inputText) => {
-  setText(inputText);
-};
-
 const userFormFields = [
-  <>
-    <TextInput
-      placeholder="First Name"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Last Name"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Age"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-  </>
+  { label: "First Name", type: "TextInput", placeholder: "John" },
+  { label: "Last Name", type: "TextInput", placeholder: "Doe" },
+  { label: "Age", type: "TextInput", placeholder: "22" },
 ];
 
 const addEventFormFields = [

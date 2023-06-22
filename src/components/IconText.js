@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 export default IconText;
 
 
-
+// How to use this:
 // Add image source in assets folder, copy the relative src and add this variable in this format:
 // const whatever name= 
 // {

@@ -1,4 +1,3 @@
-// app.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,6 +7,9 @@ import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/f
 import axios from "axios";
 import PostScreen from './src/screens/PostScreen.js';
 import { StyleSheet } from 'react-native'; // Add this import statement
+import UserInfo from './src/screens/UserInfo.js';
+import { formStyles } from './src/styles/formStyles.js';
+
 
 const Stack = createStackNavigator();
 const API_URL = "https://sheet.best/api/sheets/f11b44a1-6d15-430c-9ac2-b30911b4e72c"; // should move to .env
@@ -36,7 +38,7 @@ const App = () => {
               });
             }}
             formData={formData}
-            styles={styles} // Pass the styles object as a prop
+            styles={formStyles} // Pass the styles object as a prop
           />}
         </Stack.Screen>
         <Stack.Screen name="pickupForm">
@@ -46,25 +48,15 @@ const App = () => {
             submitText={"Create"}
             submitForm={() => console.log(formData)}
             formData={formData}
-            styles={styles} // Pass the styles object as a prop
+            styles={formStyles} // Pass the styles object as a prop
           />}
         </Stack.Screen>
         <Stack.Screen name='PostScreen' component={PostScreen} />
+        <Stack.Screen name='UserInfo' component={UserInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: 32
-  },
-  titleText: {
-    textAlign: "center",
-    fontSize: 24,
-    marginBottom: 16
-  }
-});
-
 export default App;
+

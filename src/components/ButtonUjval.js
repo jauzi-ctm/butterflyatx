@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-
 // function to add button
 const ButtonUjval = ({ data }) =>
 {
