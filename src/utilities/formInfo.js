@@ -35,34 +35,11 @@ const userFormFields = [
 ];
 
 const addEventFormFields = [
-    <>
-    <TextInput
-      placeholder="Event Title"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Description"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Date"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Time"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Location"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-  </>
- 
+  { label: "Event Title", type: "TextInput", placeholder: "Garage Sale" },
+  { label: "Description", type: "TextInput", placeholder: "Come buy stuff!" },
+  { label: "Date", type: "TextInput", placeholder: "07/01/2023" },
+  { label: "Time", type: "TextInput", placeholder: "4:00pm" },
+  { label: "Location", type: "TextInput", placeholder: "123 Street Avenue" }
 ];
 
 const startPickupGameFormFields = [
