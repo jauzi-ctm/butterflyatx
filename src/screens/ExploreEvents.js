@@ -5,28 +5,34 @@ import ButtonUjval from '../components/ButtonUjval'; // Updated import statement
 const ExploreEvents = () => {
   const navigation = useNavigation();
 
+  const handleEventDetailsPress = {
+    label: "Event Details",
+    whatAction: () => navigation.navigate("EventDetails")
+  }
+
   const handlePickupGamesPress = {
     label: "Pickup Games",
-    whatAction: () => console.log('PickupGames button pressed'), 
+    whatAction: () => console.log('PickupGames button pressed'),
   };
 
   const handleIndividualEventsPress = {
     label: "Individual Events",
-    whatAction: () => console.log('IndividualEvents button pressed'), 
+    whatAction: () => console.log('IndividualEvents button pressed'),
   };
 
-  const handleCommunityEventsPress =  {
+  const handleCommunityEventsPress = {
     label: "Community Events",
-    whatAction: () => console.log('CommunityEvents button pressed'), 
+    whatAction: () => console.log('CommunityEvents button pressed'),
   };
 
   const handlePostButtonPress = {
     label: 'Post Events',
-    whatAction: () => navigation.navigate('PostScreen'),  
+    whatAction: () => navigation.navigate('PostScreen'),
   };
 
   return (
     <>
+      <ButtonUjval data={handleEventDetailsPress} />
       <ButtonUjval data={handlePickupGamesPress} />
       <ButtonUjval data={handleIndividualEventsPress} />
       <ButtonUjval data={handleCommunityEventsPress} />

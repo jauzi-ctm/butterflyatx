@@ -3,6 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ExploreEvents from './src/screens/ExploreEvents.js';
+import EventDetails from './src/screens/EventDetails.js';
 import Form from './src/components/Form.js'; // Update the import statement
 import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
@@ -23,6 +24,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{}}>
         <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
+        <Stack.Screen name="EventDetails" component={EventDetails} />
         <Stack.Screen name="individualForm">
           {() => <Form
             title={"Create an Individual Event"}

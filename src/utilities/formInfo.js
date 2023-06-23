@@ -59,8 +59,8 @@ const startPickupGameFormFields = [
       { value: 'Volleyball' },
     ],
   },
-  { label: 'Date', type: 'TextInput', placeholder: '06/21/2023' },
-  { label: 'Time', type: 'TextInput', placeholder: '3:00pm' },
+  { label: 'Date', type: 'DatePicker', placeholder: '06/21/2023' },
+  { label: 'Time', type: 'TimePicker', placeholder: '3:00pm' },
   { label: 'Location', type: 'TextInput', placeholder: '123 Park Avenue' },
 ];
 
