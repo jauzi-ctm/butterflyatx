@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+const React = require('react');
+const { StyleSheet, TouchableOpacity, Text, View } = require('react-native');
 
 export default function App() {
   const handleButtonPress = () => {
