@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import { Feather } from "@expo/vector-icons";
 
 const IconText = ({ data, alignItems }) => {
   const { imageSrc, text } = data;
 
   return (
     <View style={[styles.imageTextContainer, { alignItems }]}>
-      <Image source={imageSrc} style={styles.image} />
+      {/* <Image source={imageSrc} style={styles.image} /> */}
+      <Feather name={imageSrc} size={30} color={"black"} style={styles.image} />
       <View style={styles.textContainer}>
         <Text>{text}</Text>
       </View>
@@ -17,11 +19,12 @@ const IconText = ({ data, alignItems }) => {
 const styles = StyleSheet.create({
   imageTextContainer: {
     flexDirection: 'row',
+    marginTop: 32,
   },
   image: {
-    width: 100,
-    height: 50,
-    marginTop: 100,
+    width: 30,
+    height: 30,
+    marginRight: 16,
   },
   textContainer: {
     flex: 2,

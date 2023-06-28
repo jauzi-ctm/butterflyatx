@@ -1,54 +1,45 @@
 import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import ButtonUjval from '../components/ButtonUjval'; // Updated import statement
 
-const HomeScreen = () => {
+const ExploreEvents = () => {
   const navigation = useNavigation();
 
-  // Function to handle the button press for PickupGames
-  const handlePickupGamesPress = () => {
-    console.log('PickupGames button pressed');
+  const handleEventDetailsPress = {
+    label: "Event Details",
+    whatAction: () => navigation.navigate("EventDetails")
+  }
+
+  const handlePickupGamesPress = {
+    label: "Pickup Games",
+    whatAction: () => console.log('PickupGames button pressed'),
   };
 
-  // Function to handle the button press for IndividualEvents
-  const handleIndividualEventsPress = () => {
-    console.log('IndividualEvents button pressed');
+  const handleIndividualEventsPress = {
+    label: "Individual Events",
+    whatAction: () => console.log('IndividualEvents button pressed'),
   };
 
-  // Function to handle the button press for CommunityEvents
-  const handleCommunityEventsPress = () => {
-    console.log('CommunityEvents button pressed');
+  const handleCommunityEventsPress = {
+    label: "Community Events",
+    whatAction: () => console.log('CommunityEvents button pressed'),
   };
 
-  // Function to handle the button press for PostButton
-  const handlePostButtonPress = () => {
-    // Navigate to the Form screen
-    navigation.navigate('AnotherForm');
+  const handlePostButtonPress = {
+    label: 'Post Events',
+    whatAction: () => navigation.navigate('PostScreen'),
   };
 
   return (
-    <View style={styles.container}>
-      {/* Button for PickupGames */}
-      <Button title="PickupGames" onPress={handlePickupGamesPress} />
-
-      {/* Button for IndividualEvents */}
-      <Button title="IndividualEvents" onPress={handleIndividualEventsPress} />
-
-      {/* Button for CommunityEvents */}
-      <Button title="CommunityEvents" onPress={handleCommunityEventsPress} />
-
-      {/* Button for PostButton */}
-      <Button title="PostButton" onPress={handlePostButtonPress} />
-    </View>
+    <>
+      <ButtonUjval data={handleEventDetailsPress} />
+      <ButtonUjval data={handlePickupGamesPress} />
+      <ButtonUjval data={handleIndividualEventsPress} />
+      <ButtonUjval data={handleCommunityEventsPress} />
+      <ButtonUjval data={handlePostButtonPress} />
+    </>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
+export default ExploreEvents
 
-export default HomeScreen;
