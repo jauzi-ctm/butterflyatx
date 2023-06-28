@@ -3,16 +3,15 @@ import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 
 // function to add button
-const ButtonUjval = ({ data }) =>
-{
-    const { label, whatAction } = data;
-    return (
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.button} onPress={whatAction}>
-            <Text style={styles.buttonText}>{label}</Text>
-          </TouchableOpacity>
-        </View>
-      );
+const ButtonUjval = ({ data }) => {
+  const { label, whatAction } = data;
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={whatAction}>
+        <Text style={styles.buttonText}>{label}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

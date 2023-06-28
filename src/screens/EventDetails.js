@@ -4,8 +4,8 @@ import Hyperlink from "react-native-hyperlink";
 import IconText from "../components/IconText";
 import ButtonUjval from "../components/ButtonUjval";
 
-const EventDetails = props => {
-    const { title, description, hostName, hostURL, date, startTime, endTime, cost, location } = props;
+const EventDetails = ({ route }) => {
+    const { title, description, hostName, hostURL, date, startTime, endTime, cost, location } = route.params;
     const { container, titleContainer, hostInfoContainer, detailsContainer, titleText, link, details } = styles;
 
     return (

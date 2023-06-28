@@ -12,7 +12,7 @@ import PostScreen from './src/screens/PostScreen.js';
 import { StyleSheet } from 'react-native'; // Add this import statement
 
 const Stack = createStackNavigator();
-const API_URL = "https://sheet.best/api/sheets/f11b44a1-6d15-430c-9ac2-b30911b4e72c"; // should move to .env
+const API_URL = "https://sheet.best/api/sheets/250f5173-51a6-4a3c-89a4-d9c4bfc33f0d"; // should move to .env
 
 const App = () => {
   const formData = {};
