@@ -4,24 +4,27 @@ import Hyperlink from "react-native-hyperlink";
 import IconText from "../components/IconText";
 import ButtonUjval from "../components/ButtonUjval";
 
-const EventDetails = () => {
+const EventDetails = props => {
+    const { title, description, hostName, hostURL, date, startTime, endTime, cost, location } = props;
+    const { container, titleContainer, hostInfoContainer, detailsContainer, titleText, link, details } = styles;
+
     return (
         <ScrollView>
-            <View style={styles.container}>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>4th of July Firework Celebration</Text>
-                    <IconText data={{ imageSrc: "info", text: "More information about the event and the line-up schedule can be found here: https://www.aaabookfest.org/2023-festival-lineup" }} alignItems={"flex-start"} />
+            <View style={container}>
+                <View style={titleContainer}>
+                    <Text style={titleText}>{title}</Text>
+                    <IconText data={{ imageSrc: "info", text: description }} alignItems={"flex-start"} />
                 </View>
-                <View style={styles.hostInfoContainer}>
-                    <Hyperlink linkDefault={true} linkText={url => "Austin Symphony Orchestra"} linkStyle={styles.link}>
-                        <Text style={styles.hostInfo}>Host: https://my.austinsymphony.org/julyfour</Text>
+                <View style={hostInfoContainer}>
+                    <Hyperlink linkDefault={true} linkText={url => hostName} linkStyle={link}>
+                        <Text style={styles.hostInfo}>Host: {hostURL}</Text>
                     </Hyperlink>
                 </View>
-                <View style={styles.detailsContainer}>
-                    <IconText data={{ imageSrc: "calendar", text: "07/04/2023" }} alignItems={"center"} style={styles.details} />
-                    <IconText data={{ imageSrc: "clock", text: "7:00pm - 9:00pm" }} alignItems={"center"} style={styles.details} />
-                    <IconText data={{ imageSrc: "dollar-sign", text: "Free" }} alignItems={"center"} style={styles.details} />
-                    <IconText data={{ imageSrc: "map-pin", text: "Vic Mathias Shores 900 West Riverside" }} alignItems={"center"} style={styles.details} />
+                <View style={detailsContainer}>
+                    <IconText data={{ imageSrc: "calendar", text: date }} alignItems={"center"} style={details} />
+                    <IconText data={{ imageSrc: "clock", text: `${startTime} - ${endTime}` }} alignItems={"center"} style={details} />
+                    <IconText data={{ imageSrc: "dollar-sign", text: cost }} alignItems={"center"} style={details} />
+                    <IconText data={{ imageSrc: "map-pin", text: location }} alignItems={"center"} style={details} />
                 </View>
                 <View style={styles.buttonContainer}>
                     <ButtonUjval data={{ label: "Add to My Events" }} />
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         margin: 16
     },
-    title: {
+    titleText: {
         fontSize: 32,
         textAlign: "center",
         fontWeight: "bold"

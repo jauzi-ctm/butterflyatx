@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const EventComponent = () => {
+const EventItem = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Event Title</Text>
