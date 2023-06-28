@@ -1,19 +1,3 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-
-export default function App() {
-  const handleButtonPress = () => {
-    console.log('Button pressed');
-  };
-
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-        <Text style={styles.buttonText}>ADD</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
