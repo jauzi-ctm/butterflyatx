@@ -35,11 +35,11 @@ const userFormFields = [
 ];
 
 const addEventFormFields = [
-  { label: "Event Title", placeholder: "July 4th Firework Show" },
-  { label: "Description", placeholder: "Wow!" },
-  { label: "Date", placeholder: "07/04/2023" },
-  { label: "Time", placeholder: "09:00pm" },
-  { label: "Location", placeholder: "Brushy Creek Park" }
+  { label: "Event Title", type: "TextInput", placeholder: "Garage Sale" },
+  { label: "Description", type: "TextInput", placeholder: "Come buy stuff!" },
+  { label: "Date", type: "TextInput", placeholder: "07/01/2023" },
+  { label: "Time", type: "TextInput", placeholder: "4:00pm" },
+  { label: "Location", type: "TextInput", placeholder: "123 Street Avenue" }
 ];
 
 const startPickupGameFormFields = [
