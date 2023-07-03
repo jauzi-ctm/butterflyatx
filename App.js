@@ -9,6 +9,7 @@ import axios from "axios";
 const Stack = createStackNavigator();
 const API_URL = "https://sheet.best/api/sheets/f11b44a1-6d15-430c-9ac2-b30911b4e72c"; // should move to .env
 
+<<<<<<< Updated upstream
 const App = () => {
   const formData = {};
 
@@ -45,4 +46,8 @@ const App = () => {
   );
 };
 
+=======
+const App = () => }
+  const formData = {}; 
+>>>>>>> Stashed changes
 export default App;
