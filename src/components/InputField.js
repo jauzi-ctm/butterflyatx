@@ -8,7 +8,7 @@ const parseDate = (date) => {
         return null;
     }
 
-    return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 }
 
 const parseTime = (date) => {

@@ -10,15 +10,20 @@ import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/f
 import axios from "axios";
 import PostScreen from './src/screens/PostScreen.js';
 import { StyleSheet } from 'react-native'; // Add this import statement
+import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
 
 const Stack = createStackNavigator();
-const API_URL = "https://sheet.best/api/sheets/250f5173-51a6-4a3c-89a4-d9c4bfc33f0d"; // should move to .env
 
 const App = () => {
-  const formData = {};
+  const formData1 = {};
+  const formData2 = {};
 
   for (inputField of startPickupGameFormFields) {
-    formData[inputField.label] = "";
+    formData1[inputField.label] = "";
+  }
+
+  for (inputField of addEventFormFields) {
+    formData2[inputField.label] = "";
   }
 
   return (
@@ -33,13 +38,13 @@ const App = () => {
             fields={addEventFormFields}
             submitText={"Create"}
             submitForm={() => {
-              axios.post(API_URL, formData).then(response => { // POST request to Google Sheets with the given form data
+              axios.post(INDIVIDUAL_EVENTS_API, formData2).then(response => { // POST request to Google Sheets with the given form data
                 console.log("success!"); // request was successful
               }, reject => {
                 console.log("failed"); // there was an error
               });
             }}
-            formData={formData}
+            formData={formData2}
             styles={styles} // Pass the styles object as a prop
           />}
         </Stack.Screen>
@@ -48,8 +53,15 @@ const App = () => {
             title={"Create a Pickup Game"}
             fields={startPickupGameFormFields}
             submitText={"Create"}
-            submitForm={() => console.log(formData)}
-            formData={formData}
+            submitForm={() => {
+              formData1["Description"] = `Join us for a game of ${formData1["Sport/Category"]}!`;
+              axios.post(PICKUP_GAMES_API, formData1).then(response => {
+                console.log("yay");
+              }, reject => {
+                console.log("no");
+              });
+            }}
+            formData={formData1}
             styles={styles} // Pass the styles object as a prop
           />}
         </Stack.Screen>

@@ -8,9 +8,7 @@ import EventItem from "../components/EventItem";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import ButtonUjval from "../components/ButtonUjval";
-
-const API_URL = "https://sheet.best/api/sheets/250f5173-51a6-4a3c-89a4-d9c4bfc33f0d"; // should move to .env
-const API_URL_2 = "https://sheet.best/api/sheets/add67ece-43e0-4eec-909d-84d327fdc1b4";
+import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API, COMMUNITY_EVENTS_API } from "@env";
 
 const Item = props => {
     const navigation = useNavigation();
@@ -36,9 +34,31 @@ const Item = props => {
 };
 
 const PickupGamesScreen = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get(PICKUP_GAMES_API).then(response => {
+            console.log("worked!");
+            setData(response.data);
+        }, reject => {
+            console.log("failed!");
+        });
+    }, []);
+
     return (
         <View style={styles.container}>
-            <Item />
+            <FlatList
+                data={data}
+                renderItem={({ item }) => (
+                    <Item title={item["Sport/Category"]}
+                        description={item["Description"]}
+                        date={item["Date"]}
+                        startTime={item["Start Time"]}
+                        endTime={item["End Time"]}
+                        location={item["Location"]} />
+                )}
+                keyExtractor={(item, index) => index.toString()}
+            />
         </View>
     );
 };
@@ -47,7 +67,7 @@ const IndividualEventsScreen = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(API_URL).then(response => {
+        axios.get(INDIVIDUAL_EVENTS_API).then(response => {
             console.log("worked!");
             setData(response.data);
         }, reject => {
@@ -78,7 +98,7 @@ const CommunityEventsScreen = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(API_URL_2).then(response => {
+        axios.get(COMMUNITY_EVENTS_API).then(response => {
             console.log("worked 2!");
             setData(response.data);
         }, reject => {
