@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import ButtonUjval from '../components/ButtonUjval'; // Updated import statement
+import { View, Text, StyleSheet } from 'react-native';
 
-const HomePage = () => {
+const Sidebar = () => {
   const navigation = useNavigation();
 
   const handleEventDetailsPress = {
@@ -15,20 +16,6 @@ const HomePage = () => {
     whatAction: () => navigation.navigate("ExploreEvents")
   }
 
-  const handlePickupGamesPress = {
-    label: "Pickup Games",
-    whatAction: () => console.log('PickupGames button pressed'),
-  };
-
-  const handleIndividualEventsPress = {
-    label: "Individual Events",
-    whatAction: () => console.log('IndividualEvents button pressed'),
-  };
-
-  const handleCommunityEventsPress = {
-    label: "Community Events",
-    whatAction: () => console.log('CommunityEvents button pressed'),
-  };
 
   const handlePostButtonPress = {
     label: 'Post Events',
@@ -36,16 +23,31 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <View style = {{ flex : 1, alignItems: 'flex-start', padding: 20, backgroundColor: '#74C5FF', width: 300 }}>
+      <Text style = {styles.text}>ButterflyATX</Text>
+      <View style = {styles.container}>
       <ButtonUjval data={handleEventDetailsPress} />
       <ButtonUjval data={handleExploreEventsPress} />
-      <ButtonUjval data={handlePickupGamesPress} />
-      <ButtonUjval data={handleIndividualEventsPress} />
-      <ButtonUjval data={handleCommunityEventsPress} />
       <ButtonUjval data={handlePostButtonPress} />
-    </>
+      </View>
+      </View>
   );
 };
 
-export default HomePage;
+const styles = StyleSheet.create({
+  text: {
+    paddingTop: 26,
+    fontSize: 30,
+    color: 'white',
+    fontWeight: 'bold',
+    paddingBottom: 60,
+    marginHorizontal: 17
+  },
+  container:{
+    width: 250,
+    height: 300,
+    marginHorizontal: -45,
+  }
+});
+export default Sidebar;
 
