@@ -1,4 +1,3 @@
-// app.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,7 +8,7 @@ import Form from './src/components/Form.js'; // Update the import statement
 import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
 import PostScreen from './src/screens/PostScreen.js';
-import { StyleSheet } from 'react-native'; // Add this import statement
+import { StyleSheet, SafeAreaView } from 'react-native'; // Add this import statement
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
 
 const Stack = createStackNavigator();
@@ -27,6 +26,7 @@ const App = () => {
   }
 
   return (
+    <SafeAreaView style = {{ flex: 2 }}>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Sidebar" component={Sidebar} />
@@ -68,6 +68,7 @@ const App = () => {
         <Stack.Screen name='PostScreen' component={PostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+    </SafeAreaView>
   );
 };
 

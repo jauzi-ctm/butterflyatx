@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 32,
+    marginTop: 10
   },
   titleText: {
     textAlign: "center",
     fontSize: 24,
-    marginBottom: 16,
   },
 });
 
