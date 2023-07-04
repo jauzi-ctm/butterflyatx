@@ -37,14 +37,16 @@ const userFormFields = [
 const addEventFormFields = [
   { label: "Event Title", type: "TextInput", placeholder: "Garage Sale" },
   { label: "Description", type: "TextInput", placeholder: "Come buy stuff!" },
-  { label: "Date", type: "TextInput", placeholder: "07/01/2023" },
-  { label: "Time", type: "TextInput", placeholder: "4:00pm" },
+  { label: "Cost", type: "TextInput", placeholder: "Free" },
+  { label: "Date", type: "DatePicker", placeholder: "07/01/2023" },
+  { label: "Start Time", type: "TimePicker", placeholder: "4:00pm" },
+  { label: "End Time", type: "TimePicker", placeholder: "6:00pm" },
   { label: "Location", type: "TextInput", placeholder: "123 Street Avenue" }
 ];
 
 const startPickupGameFormFields = [
   {
-    label: 'Category',
+    label: 'Sport/Category',
     type: 'SelectList',
     options: [
       { value: 'Frisbee' },
@@ -60,7 +62,7 @@ const startPickupGameFormFields = [
     ],
   },
   { label: 'Date', type: 'DatePicker', placeholder: '06/21/2023' },
-  { label: 'Time', type: 'TimePicker', placeholder: '3:00pm' },
+  { label: 'Start Time', type: 'TimePicker', placeholder: '3:00pm' },
   { label: 'Location', type: 'TextInput', placeholder: '123 Park Avenue' },
 ];
 
