@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import InputField from "./InputField";
+import { useNavigation } from "@react-navigation/native";
 
 const Form = (props) => {
   const { title, fields, submitText = "Submit", submitForm, formData, styles } = props;
   const { container, titleText } = styles;
+  const navigation = useNavigation();
 
   // Function to update the given formData prop
   const updateData = (label, text) => {
@@ -27,7 +29,7 @@ const Form = (props) => {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
-      <Button title={submitText} color={"gray"} onPress={submitForm} />
+      <Button title={submitText} color={"gray"} onPress={() => { navigation.goBack(); submitForm(); }} />
     </View>
   );
 };

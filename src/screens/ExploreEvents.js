@@ -14,7 +14,7 @@ const Item = props => {
     const navigation = useNavigation();
 
     return (
-        <ScrollView style={styles.itemContainer}>
+        <View style={styles.itemContainer}>
             <Text style={{ fontSize: 25, fontWeight: "bold" }}>{props.title}</Text>
             <ButtonUjval data={{
                 label: "More Info", whatAction: () => navigation.navigate("EventDetails", {
@@ -29,12 +29,13 @@ const Item = props => {
                     location: props.location
                 })
             }} />
-        </ScrollView>
+        </View>
     );
 };
 
 const PickupGamesScreen = () => {
     const [data, setData] = useState([]);
+    const navigation = useNavigation();
 
     useEffect(() => {
         axios.get(PICKUP_GAMES_API).then(response => {
@@ -47,7 +48,13 @@ const PickupGamesScreen = () => {
 
     return (
         <View style={styles.container}>
+            <ButtonUjval style={styles.postButton} data={{
+                label: "Start a new pickup event", whatAction: () => {
+                    navigation.navigate("pickupForm");
+                }
+            }} />
             <FlatList
+                style={{ marginTop: 16 }}
                 data={data}
                 renderItem={({ item }) => (
                     <Item title={item["Sport/Category"]}
@@ -65,6 +72,7 @@ const PickupGamesScreen = () => {
 
 const IndividualEventsScreen = () => {
     const [data, setData] = useState([]);
+    const navigation = useNavigation();
 
     useEffect(() => {
         axios.get(INDIVIDUAL_EVENTS_API).then(response => {
@@ -77,7 +85,13 @@ const IndividualEventsScreen = () => {
 
     return (
         <View style={styles.container}>
+            <ButtonUjval style={styles.postButton} data={{
+                label: "Create a new individual event", whatAction: () => {
+                    navigation.navigate("individualForm");
+                }
+            }} />
             <FlatList
+                style={{ marginTop: 16 }}
                 data={data}
                 renderItem={({ item }) => (
                     <Item title={item["Event Title"]}
@@ -108,7 +122,13 @@ const CommunityEventsScreen = () => {
 
     return (
         <View style={styles.container}>
+            <ButtonUjval style={styles.postButton} data={{
+                label: "Submit a new community event", whatAction: () => {
+                    console.log("hello");
+                }
+            }} />
             <FlatList
+                style={{ marginTop: 16 }}
                 data={data}
                 renderItem={({ item }) => (
                     <Item title={item["Event Name"]}
@@ -167,6 +187,9 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         padding: 16,
         marginBottom: 16
+    },
+    postButton: {
+        height: 100
     }
 });
 
