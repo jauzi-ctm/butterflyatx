@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, Text, FlatList, StyleSheet } from "react-native";
+import { View, ActivityIndicator, Text, FlatList, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -33,111 +33,53 @@ const Item = props => {
     );
 };
 
-const PickupGamesScreen = () => {
+const EventListScreen = ({ url, form }) => {
+    const [loaded, setLoaded] = useState(false);
+    const [refresh, setRefresh] = useState(false);
     const [data, setData] = useState([]);
     const navigation = useNavigation();
 
     useEffect(() => {
-        axios.get(PICKUP_GAMES_API).then(response => {
-            console.log("worked!");
+        axios.get(url).then(response => {
+            setLoaded(true);
             setData(response.data);
         }, reject => {
-            console.log("failed!");
+            console.error("An error has occurred while connecting to the database.");
         });
-    }, []);
+    }, [refresh]);
+
+    // add the spinny loading screen while waiting for data
+    if (!loaded) {
+        return (
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                <ActivityIndicator size={"large"} />
+            </View>
+        );
+    }
 
     return (
         <View style={styles.container}>
-            <ButtonUjval style={styles.postButton} data={{
-                label: "Start a new pickup event", whatAction: () => {
-                    navigation.navigate("pickupForm");
-                }
-            }} />
+            <View style={styles.buttonContainer}>
+                <ButtonUjval style={styles.postButton} data={{
+                    label: "Create a new event",
+                    whatAction: () => { if (form) navigation.navigate(form); }
+                }} />
+                <ButtonUjval data={{
+                    label: "Refresh",
+                    whatAction: () => { setLoaded(false); setRefresh(!refresh); }
+                }} />
+            </View>
             <FlatList
                 style={{ marginTop: 16 }}
                 data={data}
                 renderItem={({ item }) => (
-                    <Item title={item["Sport/Category"]}
-                        description={item["Description"]}
-                        date={item["Date"]}
-                        startTime={item["Start Time"]}
-                        endTime={item["End Time"]}
-                        location={item["Location"]} />
-                )}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
-    );
-};
-
-const IndividualEventsScreen = () => {
-    const [data, setData] = useState([]);
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        axios.get(INDIVIDUAL_EVENTS_API).then(response => {
-            console.log("worked!");
-            setData(response.data);
-        }, reject => {
-            console.log("failed!");
-        });
-    }, []);
-
-    return (
-        <View style={styles.container}>
-            <ButtonUjval style={styles.postButton} data={{
-                label: "Create a new individual event", whatAction: () => {
-                    navigation.navigate("individualForm");
-                }
-            }} />
-            <FlatList
-                style={{ marginTop: 16 }}
-                data={data}
-                renderItem={({ item }) => (
-                    <Item title={item["Event Title"]}
-                        description={item["Description"]}
-                        date={item["Date"]}
-                        startTime={item["Start Time"]}
-                        endTime={item["End Time"]}
+                    <Item title={item["Sport/Category"] || item["Event Title"] || item["Event Name"]}
+                        description={item["Description"] || item["Description of Event"]}
+                        location={item["Location"] || item["Address"]}
                         cost={item["Cost"]}
-                        location={item["Location"]} />
-                )}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
-    );
-};
-
-const CommunityEventsScreen = () => {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        axios.get(COMMUNITY_EVENTS_API).then(response => {
-            console.log("worked 2!");
-            setData(response.data);
-        }, reject => {
-            console.log("failed 2!");
-        });
-    }, []);
-
-    return (
-        <View style={styles.container}>
-            <ButtonUjval style={styles.postButton} data={{
-                label: "Submit a new community event", whatAction: () => {
-                    console.log("hello");
-                }
-            }} />
-            <FlatList
-                style={{ marginTop: 16 }}
-                data={data}
-                renderItem={({ item }) => (
-                    <Item title={item["Event Name"]}
-                        description={item["Description of Event"]}
                         date={item["Date"]}
                         startTime={item["Start Time"]}
                         endTime={item["End Time"]}
-                        cost={item["Cost"]}
-                        location={item["Address"]}
                         hostName={item["Host of Event (Company, Organization, Sponsor)"]}
                         hostURL={item["Website Affiliated with Event"]} />
                 )}
@@ -164,15 +106,21 @@ const ExploreEvents = () => {
                 color: "dodgerblue"
             }
         }}>
-            <Tab.Screen name={"Pickup Games"} component={PickupGamesScreen} options={{
+            <Tab.Screen name={"Pickup Games"} options={{
                 tabBarIcon: ({ focused }) => (<MaterialIcons name={"sports-cricket"} size={25} color={focused ? "dodgerblue" : "lightgray"} />)
-            }} />
-            <Tab.Screen name={"Individual Events"} component={IndividualEventsScreen} options={{
+            }}>
+                {() => <EventListScreen url={PICKUP_GAMES_API} form={"pickupForm"} />}
+            </Tab.Screen>
+            <Tab.Screen name={"Individual Events"} options={{
                 tabBarIcon: ({ focused }) => (<MaterialCommunityIcons name={"party-popper"} size={25} color={focused ? "dodgerblue" : "lightgray"} />)
-            }} />
-            <Tab.Screen name={"Community Events"} component={CommunityEventsScreen} options={{
+            }}>
+                {() => <EventListScreen url={INDIVIDUAL_EVENTS_API} form={"individualForm"} />}
+            </Tab.Screen>
+            <Tab.Screen name={"Community Events"} options={{
                 tabBarIcon: ({ focused }) => (<MaterialIcons name={"house"} size={25} color={focused ? "dodgerblue" : "lightgray"} />)
-            }} />
+            }}>
+                {() => <EventListScreen url={COMMUNITY_EVENTS_API} />}
+            </Tab.Screen>
         </Tab.Navigator>
     );
 };
@@ -190,6 +138,11 @@ const styles = StyleSheet.create({
     },
     postButton: {
         height: 100
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
     }
 });
 

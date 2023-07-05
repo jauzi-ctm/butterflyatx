@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, Alert, StyleSheet } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { DateTime } from "../utilities/DateTime";
+import { DateTime, isPast } from "../utilities/DateTime";
 
 const InputField = props => {
     const { label, type, required, multiline, options, placeholder = "", updateData } = props;
@@ -35,6 +35,11 @@ const InputField = props => {
                         <DateTimePicker mode={type == "DatePicker" ? "date" : "time"}
                             value={dateTime.dateObject}
                             onChange={(event, date) => {
+                                if (event.type == "set" && type == "DatePicker" && isPast(date, type)) {
+                                    Alert.alert("Invalid Input", "Please select a date that hasn't passed already.");
+                                    return;
+                                }
+
                                 if (event.type == "set") {
                                     dateTime.set(date);
                                     updateData(label, dateTime.toString());

@@ -36,6 +36,30 @@ const parseTime = (date) => {
     return `${hour}:${minutes}${isAM ? "am" : "pm"}`;
 }
 
+// format in: "MM/DD/YYYY"
+function toDateObject(format) {
+    let args = format.split("/");
+    let month = parseInt(args[0]) - 1;
+    let day = parseInt(args[1]);
+    let year = parseInt(args[2]);
+
+    return new Date(year, month, day);
+}
+
+function isPast(date) {
+    let current = new Date();
+
+    if (date.getFullYear() < current.getFullYear()) {
+        return true;
+    }
+
+    if (date.getMonth() < current.getMonth()) {
+        return true;
+    }
+
+    return date.getDate() < current.getDate();
+}
+
 class DateTime {
 
     constructor(type) {
@@ -63,4 +87,4 @@ class DateTime {
 
 }
 
-export { DateTime };
+export { DateTime, isPast };
