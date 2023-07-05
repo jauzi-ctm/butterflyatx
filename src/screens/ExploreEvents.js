@@ -19,7 +19,7 @@ const Item = props => {
         <ScrollView style={styles.itemContainer}>
             <Text style={{ fontSize: 25, fontWeight: "bold" }}>{props.title}</Text>
             <ButtonUjval data={{
-                label: "More Info", whatAction: () => navigation.navigate("EventDetails", {
+                label: "Join", whatAction: () => navigation.navigate("EventDetails", {
                     title: props.title,
                     description: props.description,
                     date: props.date,
