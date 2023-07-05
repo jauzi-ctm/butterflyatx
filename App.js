@@ -29,8 +29,8 @@ const App = () => {
     <SafeAreaView style = {{ flex: 2 }}>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
         <Stack.Screen name="Sidebar" component={Sidebar} />
-        <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
         <Stack.Screen name="EventDetails" component={EventDetails} />
         <Stack.Screen name="individualForm">
           {() => <Form
