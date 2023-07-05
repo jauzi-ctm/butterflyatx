@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import InputField from "./InputField";
-import { HamburgerButton }  from "./HamburgerButton";
+import { HamburgerButtonBack }  from "./HamburgerButtonBack";
 
 const Form = (props) => {
   const { title, fields, submitText = "Submit", submitForm, formData, styles } = props;
@@ -13,7 +13,7 @@ const Form = (props) => {
   };
 
   return (
-    <><HamburgerButton data = {{where: 'Sidebar', number: 2}}/><View style={container}>
+    <><HamburgerButtonBack /><View style={container}>
       <Text style={titleText}>{title}</Text>
       <FlatList
         data={fields} // Render the input fields as a flat list
