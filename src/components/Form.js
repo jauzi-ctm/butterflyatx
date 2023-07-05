@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import InputField from "./InputField";
+import { HamburgerButton }  from "./HamburgerButton";
 
 const Form = (props) => {
   const { title, fields, submitText = "Submit", submitForm, formData, styles } = props;
@@ -12,7 +13,7 @@ const Form = (props) => {
   };
 
   return (
-    <View style={container}>
+    <><HamburgerButton data = {{where: 'Sidebar', number: 2}}/><View style={container}>
       <Text style={titleText}>{title}</Text>
       <FlatList
         data={fields} // Render the input fields as a flat list
@@ -22,13 +23,11 @@ const Form = (props) => {
             type={item.type}
             options={item.options}
             placeholder={item.placeholder}
-            updateData={updateData}
-          />
+            updateData={updateData} />
         )}
-        keyExtractor={(item, index) => index.toString()}
-      />
+        keyExtractor={(item, index) => index.toString()} />
       <Button title={submitText} color={"gray"} onPress={submitForm} />
-    </View>
+    </View></>
   );
 };
 

@@ -40,14 +40,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     fontWeight: 'bold',
-    paddingBottom: 60,
-    marginHorizontal: 17
+    paddingBottom: 60
   },
   container:{
     width: 250,
     height: 300,
     marginHorizontal: -45,
   }
-});
+})
 export default Sidebar;
 

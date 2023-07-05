@@ -9,6 +9,8 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import ButtonUjval from "../components/ButtonUjval";
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API, COMMUNITY_EVENTS_API } from "@env";
+import { HamburgerButton } from "../components/HamburgerButton";
+import { HamburgerButtonBack } from "../components/HamburgerButtonBack"
 
 const Item = props => {
     const navigation = useNavigation();
@@ -46,7 +48,7 @@ const PickupGamesScreen = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <><HamburgerButton /><View style={styles.container}>
             <FlatList
                 data={data}
                 renderItem={({ item }) => (
@@ -57,9 +59,8 @@ const PickupGamesScreen = () => {
                         endTime={item["End Time"]}
                         location={item["Location"]} />
                 )}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
+                keyExtractor={(_item, index) => index.toString()} />
+        </View></>
     );
 };
 
@@ -76,7 +77,7 @@ const IndividualEventsScreen = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <><HamburgerButton /><View style={styles.container}>
             <FlatList
                 data={data}
                 renderItem={({ item }) => (
@@ -88,9 +89,8 @@ const IndividualEventsScreen = () => {
                         cost={item["Cost"]}
                         location={item["Location"]} />
                 )}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
+                keyExtractor={(item, index) => index.toString()} />
+        </View></>
     );
 };
 
@@ -107,7 +107,7 @@ const CommunityEventsScreen = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <><HamburgerButton /><View style={styles.container}>
             <FlatList
                 data={data}
                 renderItem={({ item }) => (
@@ -121,9 +121,8 @@ const CommunityEventsScreen = () => {
                         hostName={item["Host of Event (Company, Organization, Sponsor)"]}
                         hostURL={item["Website Affiliated with Event"]} />
                 )}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
+                keyExtractor={(item, index) => index.toString()} />
+        </View></>
     );
 };
 
