@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import InputField from "./InputField";
 import { HamburgerButtonBack }  from "./HamburgerButtonBack";
+import ButtonUjval from "./ButtonUjval";
 
 const Form = (props) => {
   const { title, fields, submitText = "Submit", submitForm, formData, styles } = props;
@@ -26,7 +27,7 @@ const Form = (props) => {
             updateData={updateData} />
         )}
         keyExtractor={(item, index) => index.toString()} />
-      <Button title={submitText} color={"gray"} onPress={submitForm} />
+      <ButtonUjval data = {{label: "Create", whatAction: submitForm}}  />
     </View></>
   );
 };

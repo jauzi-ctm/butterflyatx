@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, ScrollView, Text, FlatList, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import EventItem from "../components/EventItem";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import ButtonUjval from "../components/ButtonUjval";
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API, COMMUNITY_EVENTS_API } from "@env";
 import { HamburgerButton } from "../components/HamburgerButton";
-import { HamburgerButtonBack } from "../components/HamburgerButtonBack"
 
 const Item = props => {
     const navigation = useNavigation();
