@@ -9,6 +9,7 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import ButtonUjval from "../components/ButtonUjval";
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API, COMMUNITY_EVENTS_API } from "@env";
+import { toDateObject, isPast } from "../utilities/DateTime";
 
 const Item = props => {
     const navigation = useNavigation();
@@ -41,8 +42,16 @@ const EventListScreen = ({ url, form }) => {
 
     useEffect(() => {
         axios.get(url).then(response => {
+            let upcomingEvents = [];
+
+            for (let item of response.data) {
+                if (!isPast(toDateObject(item["Date"]))) upcomingEvents.push(item);
+            }
+
+            upcomingEvents.sort((a, b) => toDateObject(a["Date"]) - toDateObject(b["Date"]));
+
             setLoaded(true);
-            setData(response.data);
+            setData(upcomingEvents);
         }, reject => {
             console.error("An error has occurred while connecting to the database.");
         });

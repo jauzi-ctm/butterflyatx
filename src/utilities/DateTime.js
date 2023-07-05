@@ -87,4 +87,4 @@ class DateTime {
 
 }
 
-export { DateTime, isPast };
+export { DateTime, toDateObject, isPast };
