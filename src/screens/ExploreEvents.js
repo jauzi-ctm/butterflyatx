@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator, Text, FlatList, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import EventItem from "../components/EventItem";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import ButtonUjval from "../components/ButtonUjval";
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API, COMMUNITY_EVENTS_API } from "@env";
+import { HamburgerButton } from "../components/HamburgerButton";
 import { toDateObject, isPast } from "../utilities/DateTime";
 
 const Item = props => {
@@ -18,7 +17,7 @@ const Item = props => {
         <View style={styles.itemContainer}>
             <Text style={{ fontSize: 25, fontWeight: "bold" }}>{props.title}</Text>
             <ButtonUjval data={{
-                label: "More Info", whatAction: () => navigation.navigate("EventDetails", {
+                label: "Join", whatAction: () => navigation.navigate("EventDetails", {
                     title: props.title,
                     description: props.description,
                     date: props.date,
@@ -43,7 +42,7 @@ const EventListScreen = ({ url, form }) => {
     useEffect(() => {
         axios.get(url).then(response => {
             let upcomingEvents = [];
-
+          
             for (let item of response.data) {
                 if (!isPast(toDateObject(item["Date"]))) upcomingEvents.push(item);
             }
@@ -67,34 +66,36 @@ const EventListScreen = ({ url, form }) => {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.buttonContainer}>
-                <ButtonUjval style={styles.postButton} data={{
-                    label: "Create a new event",
-                    whatAction: () => { if (form) navigation.navigate(form); }
-                }} />
-                <ButtonUjval data={{
-                    label: "Refresh",
-                    whatAction: () => { setLoaded(false); setRefresh(!refresh); }
-                }} />
-            </View>
-            <FlatList
-                style={{ marginTop: 16 }}
-                data={data}
-                renderItem={({ item }) => (
-                    <Item title={item["Sport/Category"] || item["Event Title"] || item["Event Name"]}
-                        description={item["Description"] || item["Description of Event"]}
-                        location={item["Location"] || item["Address"]}
-                        cost={item["Cost"]}
-                        date={item["Date"]}
-                        startTime={item["Start Time"]}
-                        endTime={item["End Time"]}
-                        hostName={item["Host of Event (Company, Organization, Sponsor)"]}
-                        hostURL={item["Website Affiliated with Event"]} />
-                )}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
+        <>
+          <HamburgerButton />
+          <View style={styles.container}>
+              <View style={styles.buttonContainer}>
+                  <ButtonUjval style={styles.postButton} data={{
+                      label: "Create a new event",
+                      whatAction: () => { if (form) navigation.navigate(form); }
+                  }} />
+                  <ButtonUjval data={{
+                      label: "Refresh",
+                      whatAction: () => { setLoaded(false); setRefresh(!refresh); }
+                  }} />
+              </View>
+              <FlatList
+                  style={{ marginTop: 16 }}
+                  data={data}
+                  renderItem={({ item }) => (
+                      <Item title={item["Sport/Category"] || item["Event Title"] || item["Event Name"]}
+                          description={item["Description"] || item["Description of Event"]}
+                          location={item["Location"] || item["Address"]}
+                          cost={item["Cost"]}
+                          date={item["Date"]}
+                          startTime={item["Start Time"]}
+                          endTime={item["End Time"]}
+                          hostName={item["Host of Event (Company, Organization, Sponsor)"]}
+                          hostURL={item["Website Affiliated with Event"]} />
+                  )}
+                  keyExtractor={(item, index) => index.toString()} />
+          </View>
+        </>
     );
 };
 

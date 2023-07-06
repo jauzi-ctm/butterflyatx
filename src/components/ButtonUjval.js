@@ -45,5 +45,5 @@ export default ButtonUjval;
 //   whatAction: () => what action dou want it to do
 // };
 // Under return, add this:
-// <whatAction data ={whatever name u typed before} />
+// <ButtonUjval data ={whatever name u typed before} />
 

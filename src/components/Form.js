@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, FlatList, Alert, StyleSheet } from "react-native";
 import InputField from "./InputField";
+import { HamburgerButtonBack }  from "./HamburgerButtonBack";
 import { useNavigation } from "@react-navigation/native";
 import ButtonUjval from "./ButtonUjval";
 
@@ -45,7 +46,7 @@ const Form = (props) => {
   };
 
   return (
-    <View style={container}>
+    <><HamburgerButtonBack /><View style={container}>
       <Text style={titleText}>{title}</Text>
       <Text style={instructionText}>* indicates required fields</Text>
       <FlatList

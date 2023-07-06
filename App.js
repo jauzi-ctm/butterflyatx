@@ -1,15 +1,14 @@
-// app.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomePage from './src/screens/HomePage.js';
+import Sidebar from './src/screens/Sidebar.js';
 import ExploreEvents from './src/screens/ExploreEvents.js';
 import EventDetails from './src/screens/EventDetails.js';
 import Form from './src/components/Form.js'; // Update the import statement
 import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
 import PostScreen from './src/screens/PostScreen.js';
-import { StyleSheet } from 'react-native'; // Add this import statement
+import { StyleSheet, SafeAreaView } from 'react-native'; // Add this import statement
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
 
 const Stack = createStackNavigator();
@@ -19,10 +18,11 @@ const App = () => {
   const formData2 = {};
 
   return (
+    <SafeAreaView style = {{ flex: 2 }}>
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{}}>
-        <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
+        <Stack.Screen name="Sidebar" component={Sidebar} />
         <Stack.Screen name="EventDetails" component={EventDetails} />
         <Stack.Screen name="individualForm">
           {() => <Form
@@ -60,6 +60,7 @@ const App = () => {
         <Stack.Screen name='PostScreen' component={PostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+    </SafeAreaView>
   );
 };
 
