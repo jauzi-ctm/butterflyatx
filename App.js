@@ -17,14 +17,6 @@ const App = () => {
   const formData1 = {};
   const formData2 = {};
 
-  for (inputField of startPickupGameFormFields) {
-    formData1[inputField.label] = "";
-  }
-
-  for (inputField of addEventFormFields) {
-    formData2[inputField.label] = "";
-  }
-
   return (
     <SafeAreaView style = {{ flex: 2 }}>
     <NavigationContainer>
@@ -45,7 +37,7 @@ const App = () => {
               });
             }}
             formData={formData2}
-            styles={styles} // Pass the styles object as a prop
+          // styles={styles} // Pass the styles object as a prop
           />}
         </Stack.Screen>
         <Stack.Screen name="pickupForm">
@@ -62,7 +54,7 @@ const App = () => {
               });
             }}
             formData={formData1}
-            styles={styles} // Pass the styles object as a prop
+          // styles={styles} // Pass the styles object as a prop
           />}
         </Stack.Screen>
         <Stack.Screen name='PostScreen' component={PostScreen} />
