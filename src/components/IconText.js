@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const IconText = ({ data, alignItems }) => {
   const { imageSrc, text } = data;
@@ -8,7 +8,7 @@ const IconText = ({ data, alignItems }) => {
   return (
     <View style={[styles.imageTextContainer, { alignItems }]}>
       {/* <Image source={imageSrc} style={styles.image} /> */}
-      <Feather name={imageSrc} size={30} color={"black"} style={styles.image} />
+      <MaterialIcons name={imageSrc} size={30} color={"black"} style={styles.image} />
       <View style={styles.textContainer}>
         <Text>{text}</Text>
       </View>
