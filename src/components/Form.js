@@ -70,13 +70,11 @@ const Form = (props) => {
               multiline={item.multiline}
               options={item.options}
               placeholder={item.placeholder}
-              updateData={updateData}
-            />
+              updateData={updateData} />
           );
-        }}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </View>
+        } }
+        keyExtractor={(item, index) => index.toString()} />
+    </View></>
   );
 };
 
