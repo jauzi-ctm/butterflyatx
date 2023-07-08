@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ActivityIndicator, Text, FlatList, StyleSheet } from "react-native";
+import { View, ActivityIndicator, Text, FlatList, Alert, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -89,7 +89,15 @@ const EventListScreen = ({ url, form }) => {
                 <View style={styles.buttonContainer}>
                     <ButtonUjval style={styles.postButton} data={{
                         label: "Create a new event",
-                        whatAction: () => { if (form) navigation.navigate(form); }
+                        whatAction: () => {
+                            if (form) {
+                                navigation.navigate(form);
+                            }
+
+                            if (url == COMMUNITY_EVENTS_API) {
+                                Alert.alert("Post a Community Event", "Please email teamjauzi@gmail.com to submit your community event! We will review and post the event to the app as soon as possible.");
+                            }
+                        }
                     }} />
                     <ButtonUjval data={{
                         label: "Refresh",
