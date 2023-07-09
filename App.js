@@ -8,8 +8,10 @@ import Form from './src/components/Form.js'; // Update the import statement
 import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
 import PostScreen from './src/screens/PostScreen.js';
-import { StyleSheet, SafeAreaView } from 'react-native'; // Add this import statement
+import { StyleSheet, SafeAreaView, Settings } from 'react-native'; // Add this import statement
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
+import SettingScreen from './src/screens/settings.js';
+import SafeViewAndroid from './src/components/SafeViewAndroid.js';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +20,7 @@ const App = () => {
   const formData2 = {};
 
   return (
-    <SafeAreaView style = {{ flex: 2 }}>
+    <SafeAreaView style = { SafeViewAndroid.AndroidSafeArea}>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
@@ -58,6 +60,7 @@ const App = () => {
           />}
         </Stack.Screen>
         <Stack.Screen name='PostScreen' component={PostScreen} />
+        <Stack.Screen name = 'Settings' component={SettingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaView>
