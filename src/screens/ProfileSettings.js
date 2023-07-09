@@ -3,12 +3,11 @@ import { View, TextInput, StyleSheet, Alert, Text } from 'react-native'
 import { HamburgerButton } from '../components/HamburgerButton'
 import ButtonUjval from '../components/ButtonUjval'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import IconText from '../components/IconText'
+import { setStoredUserData, getStoredUserData, retrieveUserData } from './Sidebar'
 
 const ProfileSettings = () => {
   const [age, setAge] = useState('')
   const [username, setUsername] = useState('')
-  const [storedUserData, setStoredUserData] = useState(null)
 
   useEffect(() => {
     retrieveUserData()
@@ -19,67 +18,52 @@ const ProfileSettings = () => {
       const userData = { username, age }
       await AsyncStorage.setItem('userData', JSON.stringify(userData))
       Alert.alert('Success', 'User data saved successfully!')
-      setStoredUserData(userData)
+      setStoredUserData(userData) // Update the storedUserData value
     } catch (error) {
       console.log('Error saving user data:', error)
     }
   }
 
-  const retrieveUserData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('userData')
-      if (value !== null) {
-        const userData = JSON.parse(value)
-        setStoredUserData(userData)
-        console.log('Retrieved username:', userData.username)
-        console.log('Retrieved age:', userData.age)
-      }
-    } catch (error) {
-      console.log('Error retrieving user data:', error)
-    }
-  }
-  const profilePicture = {
-    imageSrc: 'user',
-    text: storedUserData?.username ? `Welcome ${storedUserData.username}!` : 'Welcome User!'
-  }
-
   return (
     <>
-      <View style = {styles.background}>
-      <HamburgerButton />
-      <View style = {styles.top}>
-        <IconText data ={profilePicture} alignItems = 'center' sizePic = {100}/>
-      </View>
-      <View style={styles.container}>
-        <Text>Update your Profile:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your username"
-          onChangeText={text => setUsername(text)}
-          value={username}
+      <View style={styles.background}>
+        <HamburgerButton />
+        <View style={styles.container}>
+          <Text>Update your Profile:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your username"
+            onChangeText={(text) => setUsername(text)}
+            value={username}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your age"
+            onChangeText={(text) => setAge(text)}
+            value={age}
+            keyboardType="numeric"
+          />
+        </View>
+        <ButtonUjval
+          data={{
+            label: 'Save Profile',
+            whatAction: () => {
+              saveUserData()
+              try {
+                const storedUserData = getStoredUserData() // Retrieve the storedUserData value
+                if (storedUserData !== null) {
+                  console.log('Retrieved username:', storedUserData.username)
+                  console.log('Retrieved age:', storedUserData.age)
+                } else {
+                  console.log('No user data retrieved')
+                }
+              } catch (error) {
+                // Handle the error silently
+              }
+            }
+          }}
         />
-        <TextInput
-          style={styles.input} // Corrected the prop name from `styles` to `style`
-          placeholder="Enter your age"
-          onChangeText={text => setAge(text)}
-          value={age}
-          keyboardType="numeric"
-        />
       </View>
-      <ButtonUjval data={{
-        label: 'Save Profile',
-        whatAction: () => {
-          saveUserData()
-          if (storedUserData !== null) {
-            console.log('Retrieved username:', storedUserData.username)
-            console.log('Retrieved age:', storedUserData.age)
-          } else {
-            console.log('No user data retrieved')
-          }
-        }
-      }}
-/>
-  </View>
     </>
   )
 }
@@ -100,11 +84,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 8
-  },
-  top: {
-    justifyContent: 'center',
-    paddingHorizontal: 105,
-    height: 100
   }
 })
 

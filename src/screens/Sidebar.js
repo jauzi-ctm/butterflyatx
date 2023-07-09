@@ -1,44 +1,69 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import ButtonUjval from '../components/ButtonUjval';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import ButtonUjval from '../components/ButtonUjval'
+import { View, Text, StyleSheet } from 'react-native'
+import IconText from '../components/IconText'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+let storedUserData = null
+
+export const setStoredUserData = (userData) => {
+  storedUserData = userData
+}
+
+export const getStoredUserData = () => {
+  return storedUserData
+}
+
+export const retrieveUserData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('userData')
+    if (value !== null) {
+      const userData = JSON.parse(value)
+      setStoredUserData(userData) // Update the storedUserData value
+      console.log('Retrieved username:', userData.username)
+      console.log('Retrieved age:', userData.age)
+    }
+  } catch (error) {
+    console.log('Error retrieving user data:', error)
+  }
+}
 
 const Sidebar = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   const handleEventDetailsPress = {
-    label: 'Event Details',
-    whatAction: () => navigation.navigate('EventDetails'),
-  };
+    label: 'My Events',
+    whatAction: () => navigation.navigate('MyEvents')
+  }
 
   const handleExploreEventsPress = {
     label: 'Explore Events',
-    whatAction: () => navigation.navigate('ExploreEvents'),
-  };
-
-  const handlePostButtonPress = {
-    label: 'Post Events',
-    whatAction: () => navigation.navigate('PostScreen'),
-  };
+    whatAction: () => navigation.navigate('ExploreEvents')
+  }
 
   const handleSettingPress = {
-    label: 'Settings',
-    whatAction: () => navigation.navigate('ProfileSettings'),
-  };
+    label: 'Update Settings',
+    whatAction: () => navigation.navigate('ProfileSettings')
+  }
+
+  const profilePicture = {
+    imageSrc: 'user',
+    text: storedUserData?.username ? `Welcome ${storedUserData.username}!` : 'Welcome User!'
+  }
 
   return (
     <View style={{ flex: 1, alignItems: 'flex-start', padding: 20, backgroundColor: '#74C5FF', width: 300 }}>
-
       <Text style={styles.text}>ButterflyATX</Text>
+            <IconText data = {profilePicture} alignItems={'center'}/>
       <View style={styles.container}>
         <ButtonUjval data={handleEventDetailsPress} />
         <ButtonUjval data={handleExploreEventsPress} />
-        <ButtonUjval data={handlePostButtonPress} />
         <ButtonUjval data={handleSettingPress} />
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   text: {
@@ -46,15 +71,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     fontWeight: 'bold',
-    paddingBottom: 60,
+    paddingBottom: 60
   },
   container: {
-    paddingTop: 20, 
+    paddingTop: 50,
     width: 250,
     height: 1000,
-    marginHorizontal: -45,
-  },
-});
+    marginHorizontal: -45
+  }
+})
 
-export default Sidebar;
-
+export default Sidebar
