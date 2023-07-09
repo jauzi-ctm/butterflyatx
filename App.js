@@ -10,7 +10,7 @@ import axios from "axios";
 import PostScreen from './src/screens/PostScreen.js';
 import { StyleSheet, SafeAreaView, Settings } from 'react-native'; // Add this import statement
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
-import SettingScreen from './src/screens/settings.js';
+import ProfileSettings from './src/screens/ProfileSettings.js';
 import SafeViewAndroid from './src/components/SafeViewAndroid.js';
 
 const Stack = createStackNavigator();
@@ -60,7 +60,7 @@ const App = () => {
           />}
         </Stack.Screen>
         <Stack.Screen name='PostScreen' component={PostScreen} />
-        <Stack.Screen name = 'Settings' component={SettingScreen} />
+        <Stack.Screen name = 'ProfileSettings' component={ProfileSettings} />
       </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaView>

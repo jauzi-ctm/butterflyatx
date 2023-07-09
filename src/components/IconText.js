@@ -1,44 +1,43 @@
-import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
-import { Feather } from "@expo/vector-icons";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import { Feather } from '@expo/vector-icons'
 
 const IconText = ({ data, alignItems }) => {
-  const { imageSrc, text } = data;
+  const { imageSrc, text } = data
 
   return (
     <View style={[styles.imageTextContainer, { alignItems }]}>
       {/* <Image source={imageSrc} style={styles.image} /> */}
-      <Feather name={imageSrc} size={30} color={"black"} style={styles.image} />
+      <Feather name={imageSrc} size={30} color={'black'} style={styles.image} />
       <View style={styles.textContainer}>
         <Text>{text}</Text>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   imageTextContainer: {
     flexDirection: 'row',
-    marginTop: 32,
+    marginTop: 32
   },
   image: {
     width: 30,
     height: 30,
-    marginRight: 16,
+    marginRight: 16
   },
   textContainer: {
-    flex: 2,
-  },
-});
+    flex: 2
+  }
+})
 
-export default IconText;
-
-
+export default IconText
 
 // Add image source in assets folder, copy the relative src and add this variable in this format:
-// const whatever name= 
+// const whatever name=
 // {
-//   imageSrc: require({the img source}), 
+//   imageSrc: require({the img source}),
 //   text: 'watever text'
 // };
 // Under return, add this:

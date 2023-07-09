@@ -23,11 +23,12 @@ const Sidebar = () => {
 
   const handleSettingPress = {
     label: 'Settings',
-    whatAction: () => navigation.navigate('Settings'),
+    whatAction: () => navigation.navigate('ProfileSettings'),
   };
 
   return (
     <View style={{ flex: 1, alignItems: 'flex-start', padding: 20, backgroundColor: '#74C5FF', width: 300 }}>
+
       <Text style={styles.text}>ButterflyATX</Text>
       <View style={styles.container}>
         <ButtonUjval data={handleEventDetailsPress} />
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   container: {
-    paddingTop: 20, // Increase this value to add more space between the buttons
+    paddingTop: 20, 
     width: 250,
     height: 1000,
     marginHorizontal: -45,
