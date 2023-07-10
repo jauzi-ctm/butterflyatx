@@ -42,6 +42,8 @@ const addEventFormFields = [
   { label: "Date", type: "DatePicker", required: true, placeholder: "07/01/2023" },
   { label: "Start Time", type: "TimePicker", required: true, placeholder: "4:00pm" },
   { label: "End Time", type: "TimePicker", required: false, placeholder: "6:00pm", default: "" },
+  { label: "userId", type: "hidden" },
+  { label: "Users Joined", type: "hidden", default: "0" },
   { type: "Button" }
 ];
 const settingsFields = [
@@ -69,6 +71,8 @@ const startPickupGameFormFields = [
   { label: 'Date', type: 'DatePicker', required: true, placeholder: '06/21/2023' },
   { label: 'Start Time', type: 'TimePicker', required: true, placeholder: '3:00pm' },
   { label: 'Location', type: 'TextInput', required: true, placeholder: '123 Park Avenue' },
+  { label: "userId", type: "hidden" },
+  { label: "Users Joined", type: "hidden", default: "0" },
   { type: "Button" }
 ];
 
