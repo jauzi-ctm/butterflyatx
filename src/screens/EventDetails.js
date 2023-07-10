@@ -7,7 +7,7 @@ import ButtonUjval from '../components/ButtonUjval'
 import { HamburgerButtonBack } from '../components/HamburgerButtonBack'
 
 const EventDetails = ({ route }) => {
-  const { title, description, hostName, hostURL, date, startTime, endTime, cost, location } = route.params
+  const { title, description, hostName, hostURL, date, startTime, endTime, cost, location, eventId } = route.params
   const { container, titleContainer, hostInfoContainer, detailsContainer, titleText, link, details } = styles
 
   return (
@@ -16,6 +16,7 @@ const EventDetails = ({ route }) => {
                 <View style={titleContainer}>
                     <Text style={titleText}>{title}</Text>
                     <IconText data={{ imageSrc: 'info', text: description }} alignItems={'flex-start'} sizePic={30} />
+                    <IconText data={{ imageSrc: 'key', text: eventId }} alignItems={'flex-start'} sizePic={30} />
                 </View>
                 <View style={hostInfoContainer}>
                     <Hyperlink linkDefault={true} linkText={url => hostName} linkStyle={link}>
