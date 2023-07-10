@@ -46,7 +46,10 @@ const addEventFormFields = [
   { label: "Users Joined", type: "hidden", default: "0" },
   { type: "Button" }
 ];
-
+const settingsFields = [
+  { label: "Name", type: "TextInput", required: true, placeholder: "john_Doe" },
+  { label: "Age", type: "TextInput", multiline: true, required: false, placeholder: "16" },
+];
 const startPickupGameFormFields = [
   {
     label: 'Sport/Category',
@@ -73,4 +76,4 @@ const startPickupGameFormFields = [
   { type: "Button" }
 ];
 
-export { userFormFields, addEventFormFields, startPickupGameFormFields };
+export { userFormFields, addEventFormFields, startPickupGameFormFields, settingsFields };

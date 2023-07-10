@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-const IconText = ({ data, alignItems }) => {
-  const { imageSrc, text } = data;
+const IconText = ({ data, alignItems, sizePic }) => {
+  const { imageSrc, text } = data
 
   return (
     <View style={[styles.imageTextContainer, { alignItems }]}>
@@ -13,32 +13,30 @@ const IconText = ({ data, alignItems }) => {
         <Text>{text}</Text>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   imageTextContainer: {
     flexDirection: 'row',
-    marginTop: 32,
+    marginTop: 32
   },
   image: {
     width: 30,
     height: 30,
-    marginRight: 16,
+    marginRight: 16
   },
   textContainer: {
-    flex: 2,
-  },
-});
+    flex: 1
+  }
+})
 
-export default IconText;
-
-
+export default IconText
 
 // Add image source in assets folder, copy the relative src and add this variable in this format:
-// const whatever name= 
+// const whatever name=
 // {
-//   imageSrc: require({the img source}), 
+//   imageSrc: require({the img source}),
 //   text: 'watever text'
 // };
 // Under return, add this:

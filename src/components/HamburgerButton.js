@@ -2,14 +2,16 @@ import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { retrieveUserData } from '../screens/Sidebar'
 
 export const HamburgerButton = (data) => {
     const where = data
     const navigation = useNavigation();
 
-    const openSidebar = () => {
-        navigation.navigate('Sidebar');
-    };
+  const openSidebar = () => {
+    navigation.navigate('Sidebar', { update: true })
+    retrieveUserData()
+  }
 
     return (
         <SafeAreaView>
@@ -35,8 +37,8 @@ export const HamburgerButtonBack = () => {
 }
 
 const styles = StyleSheet.create({
-    logoButton: {
-        width: 60,
-        height: 60,
-    },
-});
+  logoButton: {
+    width: 60,
+    height: 60
+  }
+})

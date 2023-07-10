@@ -11,11 +11,11 @@ import { HamburgerButton } from "../components/HamburgerButton";
 import { toDateObject, isPast } from "../utilities/DateTime";
 
 const Item = props => {
-    const navigation = useNavigation();
+  const navigation = useNavigation()
 
-    return (
+  return (
         <View style={styles.itemContainer}>
-            <Text style={{ fontSize: 25, fontWeight: "bold" }}>{props.title}</Text>
+            <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{props.title}</Text>
             <ButtonUjval data={{
                 label: "Join", whatAction: () => navigation.navigate("EventDetails", {
                     title: props.title,
@@ -31,8 +31,8 @@ const Item = props => {
                 })
             }} />
         </View>
-    );
-};
+  )
+}
 
 const EventListScreen = ({ url, form }) => {
     const [ready, setReady] = useState(false);
@@ -50,9 +50,8 @@ const EventListScreen = ({ url, form }) => {
             for (let item of response.data) {
                 if (!isPast(toDateObject(item["Date"]))) upcomingEvents.push(item);
             }
-
-            upcomingEvents.sort((a, b) => toDateObject(a["Date"]) - toDateObject(b["Date"]));
-
+          
+            upcomingEvents.sort((a, b) => toDateObject(a.Date) - toDateObject(b.Date))
             setData(upcomingEvents);
             setDataLoaded(true);
         }, reject => {
@@ -82,7 +81,7 @@ const EventListScreen = ({ url, form }) => {
         );
     }
 
-    return (
+  return (
         <>
             <HamburgerButton />
             <View style={styles.container}>
@@ -122,64 +121,64 @@ const EventListScreen = ({ url, form }) => {
                     keyExtractor={(item, index) => index.toString()} />
             </View>
         </>
-    );
-};
+  )
+}
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const ExploreEvents = () => {
-    return (
+  return (
         <Tab.Navigator screenOptions={{
-            tabBarActiveTintColor: "dodgerblue",
-            tabBarInactiveTintColor: "gray",
-            tabBarStyle: {
-                paddingTop: 4,
-                paddingBottom: 8
-            },
-            headerTitleStyle: {
-                fontWeight: "bold",
-                fontSize: 24,
-                color: "dodgerblue"
-            }
+          tabBarActiveTintColor: 'dodgerblue',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: {
+            paddingTop: 4,
+            paddingBottom: 8
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 24,
+            color: 'dodgerblue'
+          }
         }}>
-            <Tab.Screen name={"Pickup Games"} options={{
-                tabBarIcon: ({ focused }) => (<MaterialIcons name={"sports-cricket"} size={25} color={focused ? "dodgerblue" : "lightgray"} />)
+            <Tab.Screen name={'Pickup Games'} options={{
+              tabBarIcon: ({ focused }) => (<MaterialIcons name={'sports-cricket'} size={25} color={focused ? 'dodgerblue' : 'lightgray'} />)
             }}>
-                {() => <EventListScreen url={PICKUP_GAMES_API} form={"pickupForm"} />}
+                {() => <EventListScreen url={PICKUP_GAMES_API} form={'pickupForm'} />}
             </Tab.Screen>
-            <Tab.Screen name={"Individual Events"} options={{
-                tabBarIcon: ({ focused }) => (<MaterialCommunityIcons name={"party-popper"} size={25} color={focused ? "dodgerblue" : "lightgray"} />)
+            <Tab.Screen name={'Individual Events'} options={{
+              tabBarIcon: ({ focused }) => (<MaterialCommunityIcons name={'party-popper'} size={25} color={focused ? 'dodgerblue' : 'lightgray'} />)
             }}>
-                {() => <EventListScreen url={INDIVIDUAL_EVENTS_API} form={"individualForm"} />}
+                {() => <EventListScreen url={INDIVIDUAL_EVENTS_API} form={'individualForm'} />}
             </Tab.Screen>
-            <Tab.Screen name={"Community Events"} options={{
-                tabBarIcon: ({ focused }) => (<MaterialIcons name={"house"} size={25} color={focused ? "dodgerblue" : "lightgray"} />)
+            <Tab.Screen name={'Community Events'} options={{
+              tabBarIcon: ({ focused }) => (<MaterialIcons name={'house'} size={25} color={focused ? 'dodgerblue' : 'lightgray'} />)
             }}>
                 {() => <EventListScreen url={COMMUNITY_EVENTS_API} />}
             </Tab.Screen>
         </Tab.Navigator>
-    );
-};
+  )
+}
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16
-    },
-    itemContainer: {
-        backgroundColor: "lightblue",
-        borderRadius: 16,
-        padding: 16,
-        marginBottom: 16
-    },
-    postButton: {
-        height: 100
-    },
-    buttonContainer: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
-    }
-});
+  container: {
+    flex: 1,
+    padding: 16
+  },
+  itemContainer: {
+    backgroundColor: 'lightblue',
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 16
+  },
+  postButton: {
+    height: 100
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  }
+})
 
-export default ExploreEvents;
+export default ExploreEvents
