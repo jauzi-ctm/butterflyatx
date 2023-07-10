@@ -3,13 +3,14 @@ import { View, ScrollView, Text, StyleSheet } from "react-native";
 import Hyperlink from "react-native-hyperlink";
 import IconText from "../components/IconText";
 import ButtonUjval from "../components/ButtonUjval";
+import { HamburgerButtonBack } from "../components/HamburgerButtonBack";
 
 const EventDetails = ({ route }) => {
     const { title, description, hostName, hostURL, date, startTime, endTime, cost, location } = route.params;
     const { container, titleContainer, hostInfoContainer, detailsContainer, titleText, link, details } = styles;
 
     return (
-        <ScrollView>
+        <><HamburgerButtonBack /><ScrollView>
             <View style={container}>
                 <View style={titleContainer}>
                     <Text style={titleText}>{title}</Text>
@@ -30,7 +31,7 @@ const EventDetails = ({ route }) => {
                     <ButtonUjval data={{ label: "Add to My Events" }} />
                 </View>
             </View>
-        </ScrollView>
+        </ScrollView></>
     );
 };
 
