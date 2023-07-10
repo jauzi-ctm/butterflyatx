@@ -1,49 +1,52 @@
-import React, { useEffect } from "react";
-import { View, Text, FlatList, Alert, StyleSheet } from "react-native";
-import InputField from "./InputField";
-import { HamburgerButtonBack } from "./HamburgerButtonBack";
-import { useNavigation } from "@react-navigation/native";
-import ButtonUjval from "./ButtonUjval";
+/* eslint-disable eqeqeq */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
+import React, { useEffect } from 'react'
+import { View, Text, FlatList, Alert, StyleSheet } from 'react-native'
+import InputField from './InputField'
+import { HamburgerButtonBack } from './HamburgerButtonBack'
+import { useNavigation } from '@react-navigation/native'
+import ButtonUjval from './ButtonUjval'
 
 const resetFormData = (formData, formFields) => {
   for (inputField of formFields) {
-    formData[inputField.label] = "";
+    formData[inputField.label] = ''
   }
-};
+}
 
 const Form = (props) => {
-  const { title, fields, submitText = "Submit", submitForm, formData } = props;
-  const { container, titleText, instructionText, buttonContainer } = styles;
-  const navigation = useNavigation();
+  const { title, fields, submitText = 'Submit', submitForm, formData } = props
+  const { container, titleText, instructionText, buttonContainer } = styles
+  const navigation = useNavigation()
 
   useEffect(() => {
-    resetFormData(formData, fields);
-  }, []);
+    resetFormData(formData, fields)
+  }, [])
 
   // Function to update the given formData prop
   const updateData = (label, text) => {
-    formData[label] = text;
-  };
+    formData[label] = text
+  }
 
   const submitAction = () => {
-    for (let item of fields) {
-      if (item.type == "Button") {
-        continue;
+    for (const item of fields) {
+      if (item.type == 'Button') {
+        continue
       }
 
       if (item.required && formData[item.label].length == 0) {
-        Alert.alert("Invalid Input", "Please fill in all of the required items.");
-        return;
+        Alert.alert('Invalid Input', 'Please fill in all of the required items.')
+        return
       }
 
       if (!item.required && formData[item.label].length == 0) {
-        formData[item.label] = item.default;
+        formData[item.label] = item.default
       }
     }
 
-    submitForm();
-    Alert.alert("Success", "New event was created!", [{ onPress: navigation.goBack }]);
-  };
+    submitForm()
+    Alert.alert('Success', 'New event was created!', [{ onPress: navigation.goBack }])
+  }
 
   return (
     <>
@@ -86,26 +89,25 @@ const Form = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 16,
+    marginHorizontal: 16
   },
   titleText: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 24,
-    margin: 16,
+    margin: 16
   },
   instructionText: {
     marginHorizontal: 16,
     marginBottom: 16,
-    fontStyle: "italic"
+    fontStyle: 'italic'
   },
   buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
-});
+})
 
-export default Form;
+export default Form
 
-
-//to-do: clear input fields after submit
+// to-do: clear input fields after submit
