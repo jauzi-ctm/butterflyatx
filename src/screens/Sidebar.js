@@ -50,14 +50,14 @@ const Sidebar = () => {
   }
 
   const profilePicture = {
-    imageSrc: 'user',
+    imageSrc: 'person-outline',
     text: storedUserData?.username ? `Welcome ${storedUserData.username}!` : 'Welcome User!'
   }
 
   return (
     <View style={{ flex: 1, alignItems: 'flex-start', padding: 20, backgroundColor: '#74C5FF', width: 300 }}>
       <Text style={styles.text}>ButterflyATX</Text>
-      <IconText data = {profilePicture} alignItems={'center'} sizePic={30}/>
+      <IconText data={profilePicture} alignItems={'center'} sizePic={30} />
       <View style={styles.container}>
         <ButtonUjval data={handleEventDetailsPress} />
         <ButtonUjval data={handleExploreEventsPress} />
