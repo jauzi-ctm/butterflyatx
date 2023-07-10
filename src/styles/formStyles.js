@@ -12,4 +12,26 @@ const formStyles = StyleSheet.create({
     }
 });
 
-export { formStyles };
+const theme = {
+    ...DefaultTheme,
+    fonts: {
+      regular: {
+        fontFamily: '../../assets/fonts/RNSPhysis-Black.ttf',
+        fontWeight: 'normal',
+      },
+      medium: {
+        fontFamily: '../../assets/fonts/RNSPhysis-Medium.ttf',
+        fontWeight: 'normal',
+      },
+      light: {
+        fontFamily: '../../assets/fonts/RNSPhysis-Light.ttf',
+        fontWeight: 'normal',
+      },
+      thin: {
+        fontFamily: '../../assets/fonts/RNSPhysis-Thin.ttf',
+        fontWeight: 'normal',
+      },
+    },
+  };
+
+export { formStyles, theme };

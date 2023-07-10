@@ -1,15 +1,14 @@
-// app.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomePage from './src/screens/HomePage.js';
+import Sidebar from './src/screens/Sidebar.js';
 import ExploreEvents from './src/screens/ExploreEvents.js';
 import EventDetails from './src/screens/EventDetails.js';
 import Form from './src/components/Form.js'; // Update the import statement
 import { addEventFormFields, startPickupGameFormFields } from "./src/utilities/formInfo.js";
 import axios from "axios";
 import PostScreen from './src/screens/PostScreen.js';
-import { StyleSheet } from 'react-native'; // Add this import statement
+import { StyleSheet, SafeAreaView } from 'react-native'; // Add this import statement
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
 
 const Stack = createStackNavigator();
@@ -18,19 +17,12 @@ const App = () => {
   const formData1 = {};
   const formData2 = {};
 
-  for (inputField of startPickupGameFormFields) {
-    formData1[inputField.label] = "";
-  }
-
-  for (inputField of addEventFormFields) {
-    formData2[inputField.label] = "";
-  }
-
   return (
+    <SafeAreaView style = {{ flex: 2 }}>
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{}}>
-        <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
+        <Stack.Screen name="Sidebar" component={Sidebar} />
         <Stack.Screen name="EventDetails" component={EventDetails} />
         <Stack.Screen name="individualForm">
           {() => <Form
@@ -45,7 +37,7 @@ const App = () => {
               });
             }}
             formData={formData2}
-            styles={styles} // Pass the styles object as a prop
+          // styles={styles} // Pass the styles object as a prop
           />}
         </Stack.Screen>
         <Stack.Screen name="pickupForm">
@@ -62,12 +54,13 @@ const App = () => {
               });
             }}
             formData={formData1}
-            styles={styles} // Pass the styles object as a prop
+          // styles={styles} // Pass the styles object as a prop
           />}
         </Stack.Screen>
         <Stack.Screen name='PostScreen' component={PostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+    </SafeAreaView>
   );
 };
 
