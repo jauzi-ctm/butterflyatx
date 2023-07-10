@@ -49,37 +49,42 @@ const Form = (props) => {
   }
 
   return (
-    <><HamburgerButtonBack /><View style={container}>
-      <Text style={titleText}>{title}</Text>
-      <Text style={instructionText}>* indicates required fields</Text>
-      <FlatList
-        style={{ flex: 9, paddingHorizontal: 16 }}
-        data={fields} // Render the input fields as a flat list
-        renderItem={({ item }) => {
-          if (item.type == 'Button') {
-            return (
-              <View style={buttonContainer}>
-                <ButtonUjval data={{ label: submitText, whatAction: submitAction }} />
-                <ButtonUjval data={{ label: 'Cancel', whatAction: navigation.goBack }} />
-              </View>
-            )
-          }
+    <>
+      <HamburgerButtonBack />
+      <View style={container}>
+        <Text style={titleText}>{title}</Text>
+        <Text style={instructionText}>* indicates required fields</Text>
+        <FlatList
+          style={{ flex: 9, paddingHorizontal: 16 }}
+          data={fields} // Render the input fields as a flat list
+          renderItem={({ item }) => {
+            if (item.type == "Button") {
+              return (
+                <View style={buttonContainer}>
+                  <ButtonUjval data={{ label: submitText, whatAction: submitAction }} />
+                  <ButtonUjval data={{ label: "Cancel", whatAction: navigation.goBack }} />
+                </View>
+              );
+            }
 
-          return (
-            <InputField
-              label={item.label}
-              type={item.type}
-              required={item.required}
-              multiline={item.multiline}
-              options={item.options}
-              placeholder={item.placeholder}
-              updateData={updateData} />
-          )
-        } }
-        keyExtractor={(item, index) => index.toString()} />
-    </View></>
-  )
-}
+            return (
+              <InputField
+                label={item.label}
+                type={item.type}
+                required={item.required}
+                multiline={item.multiline}
+                options={item.options}
+                placeholder={item.placeholder}
+                updateData={updateData}
+              />
+            );
+          }}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
