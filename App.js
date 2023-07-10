@@ -13,6 +13,7 @@ import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
 
 const Stack = createStackNavigator();
 
+<<<<<<< Updated upstream
 const App = () => {
   const formData1 = {};
   const formData2 = {};
@@ -76,4 +77,8 @@ const styles = StyleSheet.create({
   }
 });
 
+=======
+const App = () => }
+  const formData = {}; 
+>>>>>>> Stashed changes
 export default App;
