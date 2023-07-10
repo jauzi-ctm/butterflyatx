@@ -1,17 +1,18 @@
-import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
-
+import React from 'react'
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 
 // function to add button
+// eslint-disable-next-line react/prop-types
 const ButtonUjval = ({ data }) => {
-  const { label, whatAction } = data;
+  // eslint-disable-next-line react/prop-types
+  const { label, whatAction } = data
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={whatAction}>
         <Text style={styles.buttonText}>{label}</Text>
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -19,31 +20,29 @@ const styles = StyleSheet.create({
     // flex: 1,
     // backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   button: {
     backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
     alignSelf: 'center',
-    margin: 10,
+    margin: 10
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
+    fontWeight: 'bold'
+  }
+})
 
-export default ButtonUjval;
+export default ButtonUjval
 
 // How to use this:
-// Add image source in assets folder, copy the relative src and add this variable in this format:
-// const whatever name= 
+// const whatever name=
 // {
 //   label: 'the name of the button',
 //   whatAction: () => what action dou want it to do
 // };
 // Under return, add this:
 // <ButtonUjval data ={whatever name u typed before} />
-

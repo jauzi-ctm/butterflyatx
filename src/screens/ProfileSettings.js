@@ -6,8 +6,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { setStoredUserData, getStoredUserData, retrieveUserData } from './Sidebar'
 
 const ProfileSettings = () => {
+  const randomNum = randomNumber()
+
   const [age, setAge] = useState('')
   const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const userID = randomNum
 
   useEffect(() => {
     retrieveUserData()
@@ -15,7 +19,7 @@ const ProfileSettings = () => {
 
   const saveUserData = async () => {
     try {
-      const userData = { username, age }
+      const userData = { username, age, email, userID }
       await AsyncStorage.setItem('userData', JSON.stringify(userData))
       Alert.alert('Success', 'User data saved successfully!')
       setStoredUserData(userData) // Update the storedUserData value
@@ -43,6 +47,12 @@ const ProfileSettings = () => {
             value={age}
             keyboardType="numeric"
           />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your email"
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+          />
         </View>
         <ButtonUjval
           data={{
@@ -54,12 +64,11 @@ const ProfileSettings = () => {
                 if (storedUserData !== null) {
                   console.log('Retrieved username:', storedUserData.username)
                   console.log('Retrieved age:', storedUserData.age)
+                  console.log('Retrieved email:', storedUserData.email)
                 } else {
                   console.log('No user data retrieved')
                 }
-              } catch (error) {
-                // Handle the error silently
-              }
+              } catch (error) {}
             }
           }}
         />
@@ -86,5 +95,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8
   }
 })
+
+const randomNumber = () => {
+  const min = 1 // minimum value
+  const max = 10000000000 // maximum value
+
+  // Generate a random number within the range (min - max)
+  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
+
+  return randomNumber
+}
 
 export default ProfileSettings

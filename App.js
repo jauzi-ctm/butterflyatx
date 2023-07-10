@@ -12,19 +12,21 @@ import { SafeAreaView } from 'react-native'
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from '@env'
 import ProfileSettings from './src/screens/ProfileSettings.js'
 import SafeViewAndroid from './src/components/SafeViewAndroid.js'
+import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper'
+import { theme } from './src/styles/formStyles.js'
 
 const Stack = createStackNavigator()
 
 const App = () => {
   const formData1 = {}
   const formData2 = {}
-
   useEffect(() => {
     retrieveUserData()
   }, [])
 
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+      <PaperProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="ExploreEvents" component={ExploreEvents} />
@@ -79,6 +81,7 @@ const App = () => {
           <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
         </Stack.Navigator>
       </NavigationContainer>
+      </PaperProvider>
     </SafeAreaView>
   )
 }

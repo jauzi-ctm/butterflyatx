@@ -15,7 +15,7 @@ const EventDetails = ({ route }) => {
             <View style={container}>
                 <View style={titleContainer}>
                     <Text style={titleText}>{title}</Text>
-                    <IconText data={{ imageSrc: 'info', text: description }} alignItems={'flex-start'} />
+                    <IconText data={{ imageSrc: 'info', text: description }} alignItems={'flex-start'} sizePic={30} />
                 </View>
                 <View style={hostInfoContainer}>
                     <Hyperlink linkDefault={true} linkText={url => hostName} linkStyle={link}>
@@ -23,10 +23,10 @@ const EventDetails = ({ route }) => {
                     </Hyperlink>
                 </View>
                 <View style={detailsContainer}>
-                    <IconText data={{ imageSrc: 'calendar', text: date }} alignItems={'center'} style={details} size = {30} />
-                    <IconText data={{ imageSrc: 'clock', text: `${startTime} - ${endTime}` }} alignItems={'center'} style={details} size = {30} />
-                    <IconText data={{ imageSrc: 'dollar-sign', text: cost }} alignItems={'center'} style={details} size = {30} />
-                    <IconText data={{ imageSrc: 'map-pin', text: location }} alignItems={'center'} style={details} size = {30} />
+                    <IconText data={{ imageSrc: 'calendar', text: date }} alignItems={'center'} style={details} sizePic = {30} />
+                    <IconText data={{ imageSrc: 'clock', text: `${startTime} - ${endTime}` }} alignItems={'center'} style={details} sizePic = {30} />
+                    <IconText data={{ imageSrc: 'dollar-sign', text: cost }} alignItems={'center'} style={details} sizePic = {30} />
+                    <IconText data={{ imageSrc: 'map-pin', text: location }} alignItems={'center'} style={details} sizePic = {30} />
                 </View>
                 <View style={styles.buttonContainer}>
                     <ButtonUjval data={{ label: 'Add to My Events' }} />

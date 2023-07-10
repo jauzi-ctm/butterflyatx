@@ -23,6 +23,8 @@ export const retrieveUserData = async () => {
       setStoredUserData(userData) // Update the storedUserData value
       console.log('Retrieved username:', userData.username)
       console.log('Retrieved age:', userData.age)
+      console.log('Retrieved age:', userData.email)
+      console.log('Retrieved userID:', userData.userID)
     }
   } catch (error) {
     console.log('Error retrieving user data:', error)
@@ -55,7 +57,7 @@ const Sidebar = () => {
   return (
     <View style={{ flex: 1, alignItems: 'flex-start', padding: 20, backgroundColor: '#74C5FF', width: 300 }}>
       <Text style={styles.text}>ButterflyATX</Text>
-            <IconText data = {profilePicture} alignItems={'center'}/>
+      <IconText data = {profilePicture} alignItems={'center'} sizePic={30}/>
       <View style={styles.container}>
         <ButtonUjval data={handleEventDetailsPress} />
         <ButtonUjval data={handleExploreEventsPress} />
