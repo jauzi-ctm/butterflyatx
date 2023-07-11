@@ -23,8 +23,9 @@ export const retrieveUserData = async () => {
       setStoredUserData(userData) // Update the storedUserData value
       console.log('Retrieved username:', userData.username)
       console.log('Retrieved age:', userData.age)
-      console.log('Retrieved age:', userData.email)
-      console.log('Retrieved userID:', userData.userID)
+      console.log('Retrieved email:', userData.email)
+      console.log('Retrieved userID:', userData.id)
+      return userData;
     }
   } catch (error) {
     console.log('Error retrieving user data:', error)
@@ -36,17 +37,17 @@ const Sidebar = () => {
 
   const handleEventDetailsPress = {
     label: 'My Events',
-    whatAction: () => navigation.navigate('MyEvents')
+    whatAction: () => navigation.navigate('My Events')
   }
 
   const handleExploreEventsPress = {
     label: 'Explore Events',
-    whatAction: () => navigation.navigate('ExploreEvents')
+    whatAction: () => navigation.navigate('Explore Events')
   }
 
   const handleSettingPress = {
     label: 'Update Settings',
-    whatAction: () => navigation.navigate('ProfileSettings')
+    whatAction: () => navigation.navigate('Settings')
   }
 
   const profilePicture = {
@@ -59,9 +60,9 @@ const Sidebar = () => {
       <Text style={styles.text}>ButterflyATX</Text>
       <IconText data={profilePicture} alignItems={'center'} sizePic={30} />
       <View style={styles.container}>
-        <ButtonUjval data={handleEventDetailsPress} />
-        <ButtonUjval data={handleExploreEventsPress} />
-        <ButtonUjval data={handleSettingPress} />
+        <ButtonUjval style={styles.button} data={handleEventDetailsPress} />
+        <ButtonUjval style={styles.button} data={handleExploreEventsPress} />
+        <ButtonUjval style={styles.button} data={handleSettingPress} />
       </View>
     </View>
   )
@@ -79,7 +80,8 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     width: 250,
     height: 1000,
-    marginHorizontal: -45
+    marginHorizontal: -5,
+    justifyContent: "flex-start"
   }
 })
 
