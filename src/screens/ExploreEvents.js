@@ -28,7 +28,7 @@ const Item = props => {
                 endTime: props.endTime,
                 cost: props.cost,
                 location: props.location, // add number
-                eventID: props.eventId
+                eventId: props.eventId
               })
             }} />
         </View>
@@ -93,7 +93,8 @@ const EventListScreen = ({ url, form }) => {
                           startTime={item['Start Time']}
                           endTime={item['End Time']}
                           hostName={item['Host of Event (Company, Organization, Sponsor)']}
-                          hostURL={item['Website Affiliated with Event']} /> // add eventID
+                          hostURL={item['Website Affiliated with Event']}
+                          eventId = {item.eventId}/> // add eventID
                   )}
                   keyExtractor={(item, index) => index.toString()} />
           </View>
