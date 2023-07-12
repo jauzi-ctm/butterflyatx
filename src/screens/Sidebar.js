@@ -4,8 +4,9 @@ import ButtonUjval from '../components/ButtonUjval'
 import { View, Text, StyleSheet } from 'react-native'
 import IconText from '../components/IconText'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getAllEventIds, eventIds } from './EventDetails'
 
-let storedUserData = null
+export let storedUserData = null
 
 export const setStoredUserData = (userData) => {
   storedUserData = userData
@@ -23,8 +24,7 @@ export const retrieveUserData = async () => {
       setStoredUserData(userData) // Update the storedUserData value
       console.log('Retrieved username:', userData.username)
       console.log('Retrieved age:', userData.age)
-      console.log('Retrieved age:', userData.email)
-      console.log('Retrieved userID:', userData.userID)
+      console.log('Retrieved email:', userData.email)
     }
   } catch (error) {
     console.log('Error retrieving user data:', error)
@@ -33,6 +33,7 @@ export const retrieveUserData = async () => {
 
 const Sidebar = () => {
   const navigation = useNavigation()
+  getAllEventIds()
 
   const handleEventDetailsPress = {
     label: 'My Events',

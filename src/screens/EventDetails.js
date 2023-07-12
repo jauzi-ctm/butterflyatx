@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { View, ScrollView, Text, StyleSheet } from 'react-native'
@@ -6,6 +7,24 @@ import IconText from '../components/IconText'
 import ButtonUjval from '../components/ButtonUjval'
 import { HamburgerButtonBack } from '../components/HamburgerButtonBack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+
+export let eventIds
+
+export const getAllEventIds = async () => {
+  try {
+    const storedEventIds = await AsyncStorage.getItem('eventIds')
+    if (storedEventIds) {
+      eventIds = JSON.parse(storedEventIds)
+      console.log('All eventIds:', eventIds)
+    } else {
+      console.log('No eventIds found.')
+      return []
+    }
+  } catch (error) {
+    console.log('Error retrieving eventIds:', error)
+    return []
+  }
+}
 
 const EventDetails = ({ route }) => {
   const { title, description, hostName, hostURL, date, startTime, endTime, cost, location, eventId } = route.params
@@ -40,33 +59,6 @@ const EventDetails = ({ route }) => {
     }
   }
 
-  const getAllEventIds = async () => {
-    try {
-      const storedEventIds = await AsyncStorage.getItem('eventIds')
-      if (storedEventIds) {
-        const eventIds = JSON.parse(storedEventIds)
-        console.log('All eventIds:', eventIds)
-        return eventIds
-      } else {
-        console.log('No eventIds found.')
-        return []
-      }
-    } catch (error) {
-      console.log('Error retrieving eventIds:', error)
-      return []
-    }
-  }
-
-  const retrieveEventIds = async () => {
-    try {
-      const eventIds = await getAllEventIds();
-      // Use the eventIds array here or perform any other operations
-    } catch (error) {
-      // Handle the error if any occurred during retrieval
-      console.log('Error retrieving eventIds:', error);
-    }
-  };
-
   return (
     <>
       <HamburgerButtonBack />
@@ -94,7 +86,7 @@ const EventDetails = ({ route }) => {
             <IconText data={{ imageSrc: 'map-pin', text: location }} alignItems={'center'} style={details} sizePic={30} />
           </View>
           <View style={styles.buttonContainer}>
-            <ButtonUjval data={{ label: 'Add to My Events', whatAction: () => { handleAddToMyEvents(); retrieveEventIds() } }} />
+            <ButtonUjval data={{ label: 'Add to My Events', whatAction: () => { handleAddToMyEvents(); getAllEventIds() } }} />
           </View>
         </View>
       </ScrollView>
@@ -148,3 +140,5 @@ const styles = StyleSheet.create({
 })
 
 export default EventDetails
+
+// import eventIds and getAllEventIds, and at the starting o the program, type getAllEventIds()

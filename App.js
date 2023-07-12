@@ -12,8 +12,9 @@ import { SafeAreaView } from 'react-native'
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from '@env'
 import ProfileSettings from './src/screens/ProfileSettings.js'
 import SafeViewAndroid from './src/components/SafeViewAndroid.js'
-import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper'
+import { Provider as PaperProvider } from 'react-native-paper'
 import { theme } from './src/styles/formStyles.js'
+import EventItem from './src/components/EventItem.js'
 
 const Stack = createStackNavigator()
 
@@ -79,6 +80,7 @@ const App = () => {
           </Stack.Screen>
           <Stack.Screen name="PostScreen" component={PostScreen} />
           <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
+          <Stack.Screen name="MyEvents" component={EventItem} />
         </Stack.Navigator>
       </NavigationContainer>
       </PaperProvider>
@@ -86,4 +88,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

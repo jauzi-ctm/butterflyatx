@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 const EventItem = () => {
   return (
@@ -23,62 +23,62 @@ const EventItem = () => {
         </TouchableOpacity>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   profileContainer: {
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    marginBottom: 20,
+    marginBottom: 20
   },
   profileText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   organizerName: {
-    fontSize: 14,
+    fontSize: 14
   },
   contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'blue',
     borderRadius: 10,
-    padding: 20,
+    padding: 20
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     color: 'white',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   infoContainer: {
     marginBottom: 20,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   infoText: {
     fontSize: 18,
     marginBottom: 10,
-    color: 'white',
+    color: 'white'
   },
   button: {
     backgroundColor: 'white',
     padding: 10,
     borderRadius: 5,
-    marginBottom: 10,
+    marginBottom: 10
   },
   buttonText: {
     color: 'blue',
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+    textAlign: 'center'
+  }
+})
 
-export default EventComponent;
+export default EventItem
