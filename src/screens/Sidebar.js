@@ -4,7 +4,7 @@ import ButtonUjval from '../components/ButtonUjval'
 import { View, Text, StyleSheet } from 'react-native'
 import IconText from '../components/IconText'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { getAllEventIds, eventIds } from './EventDetails'
+import { getAllEventIds } from './EventDetails'
 
 export let storedUserData = null
 

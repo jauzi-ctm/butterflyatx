@@ -17,7 +17,7 @@ const Item = props => {
         <View style={styles.itemContainer}>
             <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{props.title}</Text>
             <ButtonUjval data={{
-              label: 'Join',
+              label: 'More Info',
               whatAction: () => navigation.navigate('EventDetails', {
                 title: props.title,
                 description: props.description,
@@ -94,7 +94,7 @@ const EventListScreen = ({ url, form }) => {
                           endTime={item['End Time']}
                           hostName={item['Host of Event (Company, Organization, Sponsor)']}
                           hostURL={item['Website Affiliated with Event']}
-                          eventId = {item.eventId}/> // add eventID
+                          eventId = {item.eventId}/>
                   )}
                   keyExtractor={(item, index) => index.toString()} />
           </View>
