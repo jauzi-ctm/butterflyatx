@@ -1,9 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 const EventItem = props => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
     <View style={styles.container}>
@@ -20,7 +21,7 @@ const EventItem = props => {
         {/* <TouchableOpacity style={styles.button} onPress={() => console.log('Join button pressed')}>
           <Text style={styles.buttonText}>Join</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Event Details", {
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Event Details', {
           title: props.title,
           description: props.description,
           date: props.date,
@@ -36,63 +37,63 @@ const EventItem = props => {
         </TouchableOpacity>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 32,
+    marginBottom: 32
     // justifyContent: 'center',
     // alignItems: 'center',
   },
   profileContainer: {
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    marginBottom: 8,
+    marginBottom: 8
   },
   profileText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   organizerName: {
-    fontSize: 14,
+    fontSize: 14
   },
   contentContainer: {
     // justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: 'lightblue',
     borderRadius: 10,
-    padding: 20,
+    padding: 20
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 8,
     // color: 'white',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   infoContainer: {
     marginBottom: 8,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   infoText: {
     fontSize: 16,
-    marginBottom: 8,
+    marginBottom: 8
     // color: 'white',
   },
   button: {
     backgroundColor: 'white',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 5
     // marginBottom: 10,
   },
   buttonText: {
     color: 'blue',
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+    textAlign: 'center'
+  }
+})
 
-export default EventItem;
+export default EventItem
