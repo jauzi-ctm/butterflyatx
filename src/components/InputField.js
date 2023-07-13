@@ -52,7 +52,7 @@ const InputField = props => {
                   setShowModal(false)
                   setFocus(false)
                 }} />
-            )
+              )
             : ''}
           <TextInput editable placeholder={placeholder}
             showSoftInputOnFocus={false} // disable the keyboard from popping up

@@ -1,7 +1,7 @@
-import React from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from 'react'
+import { Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export const HamburgerButtonBack = () => {
   const navigation = useNavigation()
@@ -13,10 +13,10 @@ export const HamburgerButtonBack = () => {
   return (
       <SafeAreaView>
           <TouchableOpacity onPress={opengoBack}>
-              <Image source={require("../../assets/goBack.png")} style={styles.logoButton} />
+              <Image source={require('../../assets/goBack.png')} style={styles.logoButton} />
           </TouchableOpacity>
       </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

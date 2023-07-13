@@ -25,7 +25,7 @@ export const retrieveUserData = async () => {
       console.log('Retrieved age:', userData.age)
       console.log('Retrieved email:', userData.email)
       console.log('Retrieved userID:', userData.id)
-      return userData;
+      return userData
     }
   } catch (error) {
     console.log('Error retrieving user data:', error)
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 1000,
     marginHorizontal: -5,
-    justifyContent: "flex-start"
+    justifyContent: 'flex-start'
   }
 })
 
