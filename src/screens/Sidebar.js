@@ -70,7 +70,7 @@ const Sidebar = () => {
         <ButtonUjval style={styles.button} data={handleEventDetailsPress} />
         <ButtonUjval style={styles.button} data={handleExploreEventsPress} />
         <ButtonUjval style={styles.button} data={handleSettingPress} />
-        <ButtonUjval style={styles.button} data={handleClosePress} />
+        <ButtonUjval style={styles.button} data={handleClosePress} />;
       </View>
     </View>
   )
