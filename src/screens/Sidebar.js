@@ -4,7 +4,7 @@ import ButtonUjval from '../components/ButtonUjval'
 import { View, Text, StyleSheet } from 'react-native'
 import IconText from '../components/IconText'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { getAllEventIds } from './EventDetails'
+// import { getAllEventIds } from './EventDetails'
 
 export let storedUserData = null
 
@@ -35,7 +35,7 @@ export const retrieveUserData = async () => {
 
 const Sidebar = () => {
   const navigation = useNavigation()
-  getAllEventIds()
+  // getAllEventIds()
 
   const handleEventDetailsPress = {
     label: 'My Events',

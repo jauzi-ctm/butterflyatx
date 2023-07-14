@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { View, ActivityIndicator, Text, FlatList, Alert, StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import axios from 'axios'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import ButtonUjval from '../components/ButtonUjval'
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API, COMMUNITY_EVENTS_API, USER_API } from '@env'
 import { toDateObject, isPast } from '../utilities/DateTime'
@@ -20,30 +20,34 @@ const EventListScreen = ({ url, form }) => {
   const [userDataLoaded, setUserDataLoaded] = useState(false)
   const navigation = useNavigation()
 
-  useEffect(() => {
-    axios.get(url).then(response => {
-      const upcomingEvents = []
+  useFocusEffect(
+    useCallback(() => {
+      axios.get(url).then(response => {
+        const upcomingEvents = []
 
-      for (const item of response.data) {
-        if (!isPast(toDateObject(item.Date))) upcomingEvents.push(item)
-      }
+        for (const item of response.data) {
+          if (!isPast(toDateObject(item.Date))) upcomingEvents.push(item)
+        }
 
-      upcomingEvents.sort((a, b) => toDateObject(a.Date) - toDateObject(b.Date))
-      setData(upcomingEvents)
-      setDataLoaded(true)
-    }, reject => {
-      console.error('An error has occurred while connecting to the database.')
-    })
-  }, [refresh])
+        upcomingEvents.sort((a, b) => toDateObject(a.Date) - toDateObject(b.Date))
+        setData(upcomingEvents)
+        setDataLoaded(true)
+      }, reject => {
+        console.error('An error has occurred while connecting to the database.')
+      })
+    }, [refresh])
+  );
 
-  useEffect(() => {
-    axios.get(USER_API).then(response => {
-      setUserData(response.data)
-      setUserDataLoaded(true)
-    }, reject => {
-      console.error('An error has occurred while connecting to the database.')
-    })
-  }, [refresh])
+  useFocusEffect(
+    useCallback(() => {
+      axios.get(USER_API).then(response => {
+        setUserData(response.data)
+        setUserDataLoaded(true)
+      }, reject => {
+        console.error('An error has occurred while connecting to the database.')
+      })
+    }, [refresh])
+  );
 
   // add the spinny loading screen while waiting for data
   if (!ready) {

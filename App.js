@@ -15,6 +15,7 @@ import SafeViewAndroid from './src/components/SafeViewAndroid.js'
 import { Provider as PaperProvider } from 'react-native-paper'
 import { theme } from './src/styles/formStyles.js'
 import { HamburgerButton } from './src/components/HamburgerButton.js'
+import MyEvents from './src/screens/MyEvents.js'
 
 const Stack = createStackNavigator()
 
@@ -35,6 +36,7 @@ const App = () => {
             <Stack.Screen name="Event Details" component={EventDetails} />
             {/* <Stack.Screen name="PostScreen" component={PostScreen} /> */}
             <Stack.Screen name="Settings" component={ProfileSettings} options={{ headerLeft: () => (<HamburgerButton />) }} />
+            <Stack.Screen name="My Events" component={MyEvents} options={{ headerLeft: () => (<HamburgerButton />) }} />
             <Stack.Screen name="Individual Event Form">
               {() => (
                 <Form

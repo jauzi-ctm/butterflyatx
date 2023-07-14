@@ -53,7 +53,7 @@ const ProfileSettings = () => {
 
     try {
       if (!formData["userId"]) {
-        console.log("hey")
+        console.log(formData)
         axios.post(USER_API, formData).then(response => { console.log("yay") });
         axios.get(USER_API).then(response => {
           formData["userId"] = "" + (parseInt(response.data[response.data.length - 1]["userId"]) + 1);
