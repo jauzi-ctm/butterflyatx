@@ -7,6 +7,7 @@ import InputField from './InputField'
 import { HamburgerButtonBack } from './HamburgerButtonBack'
 import { useNavigation } from '@react-navigation/native'
 import ButtonUjval from './ButtonUjval'
+import { retrieveUserData } from '../screens/Sidebar'
 
 const resetFormData = (formData, formFields) => {
   for (let inputField of formFields) {
@@ -32,7 +33,7 @@ const Form = (props) => {
     formData[label] = text
   }
 
-  const submitAction = () => {
+  const submitAction = async () => {
     for (const item of fields) {
       if (item.type == 'Button') {
         continue
@@ -44,7 +45,9 @@ const Form = (props) => {
       }
 
       if (item.type == "hidden") {
-        formData[item.label] = "0";
+        let userData = await retrieveUserData();
+        console.log(userData);
+        formData[item.label] = userData.id;
         continue;
       }
 
@@ -64,7 +67,6 @@ const Form = (props) => {
 
   return (
     <>
-      <HamburgerButtonBack />
       <View style={container}>
         <Text style={titleText}>{title}</Text>
         <Text style={instructionText}>* indicates required fields</Text>
