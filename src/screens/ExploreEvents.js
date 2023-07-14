@@ -92,7 +92,8 @@ const EventListScreen = ({ url, form }) => {
               endTime={item['End Time']}
               hostName={item['Host of Event (Company, Organization, Sponsor)'] || (userData[item.userId] && userData[item.userId].Username)}
               hostURL={item['Website Affiliated with Event'] || (userData[item.userId] && userData[item.userId]['Email Address'])}
-              usersJoined={item['Users Joined']} />
+              usersJoined={item['Users Joined']}
+              eventId={item['eventId']} />
           )}
           keyExtractor={(item, index) => index.toString()}
           ListEmptyComponent={() => (<Text style={{ textAlign: 'center' }}>Looks like there are no upcoming events. Add your own by pressing the "Create a new event" button above!</Text>)} />

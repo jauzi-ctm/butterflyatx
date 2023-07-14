@@ -20,11 +20,11 @@ const parseTime = (date) => {
     isAM = false
   }
 
-  if (hour == 0) {
+  if (hour === 0) {
     hour = 12
   }
 
-  if (hour == 12) {
+  if (hour === 12) {
     isAM = false
   }
 
@@ -65,7 +65,7 @@ class DateTime {
   constructor (type) {
     this.dateObject = new Date()
     this.isInitialized = false
-    this.isDate = type == 'DatePicker'
+    this.isDate = type === 'DatePicker'
   }
 
   set (newDate) {
