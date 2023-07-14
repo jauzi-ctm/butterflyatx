@@ -1,0 +1,28 @@
+{
+  "cli": {
+    "version": ">= 3.15.1"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "prebuildCommand": "prebuild --npm",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "PICKUP_GAMES_API": "https://sheet.best/api/sheets/d0a15bdd-1268-44e8-b94e-29ebba89fe78",
+        "INDIVIDUAL_EVENTS_API": "https://sheet.best/api/sheets/be96fbac-24d1-40ee-b1f7-0954e1aea866",
+        "COMMUNITY_EVENTS_API": "https://sheet.best/api/sheets/add67ece-43e0-4eec-909d-84d327fdc1b4",
+        "USER_API": "https://sheet.best/api/sheets/35079431-7982-41ea-b1af-36c05982e97f"
+      }
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}

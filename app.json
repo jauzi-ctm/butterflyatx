@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jauzi.butterflyatx"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9882f44f-e92f-45ed-a73d-0396a18ac9c6"
+      }
+    },
+    "owner": "jauzi-ctm"
   }
 }
