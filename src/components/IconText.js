@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 
-const IconText = ({ data, alignItems, sizePic }) => {
+const IconText = ({ data, alignItems }) => {
   const { imageSrc, text } = data
 
   return (
     <View style={[styles.imageTextContainer, { alignItems }]}>
       {/* <Image source={imageSrc} style={styles.image} /> */}
-      <Feather name={imageSrc} size={sizePic} color={'black'} style={styles.image} />
+      <MaterialIcons name={imageSrc} size={30} color={'black'} style={styles.image} />
       <View style={styles.textContainer}>
         <Text>{text}</Text>
       </View>

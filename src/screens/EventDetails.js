@@ -5,92 +5,121 @@ import { View, ScrollView, Text, StyleSheet } from 'react-native'
 import Hyperlink from 'react-native-hyperlink'
 import IconText from '../components/IconText'
 import ButtonUjval from '../components/ButtonUjval'
-import { HamburgerButtonBack } from '../components/HamburgerButtonBack'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export let eventIds
+// import { HamburgerButtonBack } from '../components/HamburgerButtonBack'
+// import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const getAllEventIds = async () => {
-  try {
-    const storedEventIds = await AsyncStorage.getItem('eventIds')
-    if (storedEventIds) {
-      eventIds = JSON.parse(storedEventIds)
-      console.log('All eventIds:', eventIds)
-    } else {
-      console.log('No eventIds found.')
-      return []
-    }
-  } catch (error) {
-    console.log('Error retrieving eventIds:', error)
-    return []
-  }
-}
+// export let eventIds
 
+// export const getAllEventIds = async () => {
+//   try {
+//     const storedEventIds = await AsyncStorage.getItem('eventIds')
+//     if (storedEventIds) {
+//       eventIds = JSON.parse(storedEventIds)
+//       console.log('All eventIds:', eventIds)
+//     } else {
+//       console.log('No eventIds found.')
+//       return []
+//     }
+//   } catch (error) {
+//     console.log('Error retrieving eventIds:', error)
+//     return []
+//   }
+// }
+
+// const EventDetails = ({ route }) => {
+//   const { title, description, hostName, hostURL, date, startTime, endTime, cost, location, eventId } = route.params
+//   const { container, titleContainer, hostInfoContainer, detailsContainer, titleText, link, details } = styles
+
+//   const handleAddToMyEvents = async () => {
+//     try {
+//       // Retrieve the existing list of eventIds from AsyncStorage
+//       const storedEventIds = await AsyncStorage.getItem('eventIds')
+//       let existingEventIds = []
+
+//       if (storedEventIds) {
+//         existingEventIds = JSON.parse(storedEventIds)
+//       }
+
+//       // Check if the eventId already exists in the list
+//       const eventExists = existingEventIds.includes(eventId)
+
+//       if (!eventExists) {
+//         // Append the new eventId to the existing list
+//         const updatedEventIds = [...existingEventIds, eventId]
+
+//         // Store the updated list in AsyncStorage
+//         await AsyncStorage.setItem('eventIds', JSON.stringify(updatedEventIds))
+
+//         console.log('EventId stored successfully:', eventId)
+//       } else {
+//         console.log('EventId already exists:', eventId)
+//       }
+//     } catch (error) {
+//       console.log('Error storing EventId:', error)
+//     }
+//   }
+
+//   return (
+//     <>
+//       <HamburgerButtonBack />
+//       <ScrollView>
+//         <View style={container}>
+//           <View style={titleContainer}>
+//             <Text style={titleText}>{title}</Text>
+//             <IconText data={{ imageSrc: 'info', text: description }} alignItems={'flex-start'} sizePic={30} />
+//             <IconText data={{ imageSrc: 'key', text: eventId }} alignItems={'flex-start'} sizePic={30} />
+//           </View>
+//           <View style={hostInfoContainer}>
+//             <Hyperlink linkDefault={true} linkText={url => hostName} linkStyle={link}>
+//               <Text style={styles.hostInfo}>Host: {hostURL}</Text>
+//             </Hyperlink>
+//           </View>
+//           <View style={detailsContainer}>
+//             <IconText data={{ imageSrc: 'calendar', text: date }} alignItems={'center'} style={details} sizePic={30} />
+//             <IconText
+//               data={{ imageSrc: 'clock', text: `${startTime} - ${endTime}` }}
+//               alignItems={'center'}
+//               style={details}
+//               sizePic={30}
+//             />
+//             <IconText data={{ imageSrc: 'dollar-sign', text: cost }} alignItems={'center'} style={details} sizePic={30} />
+//             <IconText data={{ imageSrc: 'map-pin', text: location }} alignItems={'center'} style={details} sizePic={30} />
+//           </View>
+//           <View style={styles.buttonContainer}>
+//             <ButtonUjval data={{ label: 'Add to My Events', whatAction: () => { handleAddToMyEvents(); getAllEventIds() } }} />
+//           </View>
+//         </View>
+//       </ScrollView>
+//     </>
+    
 const EventDetails = ({ route }) => {
-  const { title, description, hostName, hostURL, date, startTime, endTime, cost, location, eventId } = route.params
+  const { title, description, hostName, hostURL, date, startTime, endTime, cost, location, usersJoined } = route.params
   const { container, titleContainer, hostInfoContainer, detailsContainer, titleText, link, details } = styles
-
-  const handleAddToMyEvents = async () => {
-    try {
-      // Retrieve the existing list of eventIds from AsyncStorage
-      const storedEventIds = await AsyncStorage.getItem('eventIds')
-      let existingEventIds = []
-
-      if (storedEventIds) {
-        existingEventIds = JSON.parse(storedEventIds)
-      }
-
-      // Check if the eventId already exists in the list
-      const eventExists = existingEventIds.includes(eventId)
-
-      if (!eventExists) {
-        // Append the new eventId to the existing list
-        const updatedEventIds = [...existingEventIds, eventId]
-
-        // Store the updated list in AsyncStorage
-        await AsyncStorage.setItem('eventIds', JSON.stringify(updatedEventIds))
-
-        console.log('EventId stored successfully:', eventId)
-      } else {
-        console.log('EventId already exists:', eventId)
-      }
-    } catch (error) {
-      console.log('Error storing EventId:', error)
-    }
-  }
-
   return (
-    <>
-      <HamburgerButtonBack />
-      <ScrollView>
-        <View style={container}>
-          <View style={titleContainer}>
-            <Text style={titleText}>{title}</Text>
-            <IconText data={{ imageSrc: 'info', text: description }} alignItems={'flex-start'} sizePic={30} />
-            <IconText data={{ imageSrc: 'key', text: eventId }} alignItems={'flex-start'} sizePic={30} />
-          </View>
-          <View style={hostInfoContainer}>
-            <Hyperlink linkDefault={true} linkText={url => hostName} linkStyle={link}>
-              <Text style={styles.hostInfo}>Host: {hostURL}</Text>
-            </Hyperlink>
-          </View>
-          <View style={detailsContainer}>
-            <IconText data={{ imageSrc: 'calendar', text: date }} alignItems={'center'} style={details} sizePic={30} />
-            <IconText
-              data={{ imageSrc: 'clock', text: `${startTime} - ${endTime}` }}
-              alignItems={'center'}
-              style={details}
-              sizePic={30}
-            />
-            <IconText data={{ imageSrc: 'dollar-sign', text: cost }} alignItems={'center'} style={details} sizePic={30} />
-            <IconText data={{ imageSrc: 'map-pin', text: location }} alignItems={'center'} style={details} sizePic={30} />
-          </View>
-          <View style={styles.buttonContainer}>
-            <ButtonUjval data={{ label: 'Add to My Events', whatAction: () => { handleAddToMyEvents(); getAllEventIds() } }} />
-          </View>
+    <><ScrollView>
+      <View style={container}>
+        <View style={titleContainer}>
+          <Text style={titleText}>{title}</Text>
+          <IconText data={{ imageSrc: 'info-outline', text: description }} alignItems={'flex-start'} />
         </View>
-      </ScrollView>
-    </>
+        <View style={hostInfoContainer}>
+          <Hyperlink linkDefault={true} linkText={url => hostName} linkStyle={link}>
+            <Text style={styles.hostInfo}>Host: {hostURL}</Text>
+          </Hyperlink>
+        </View>
+        <View style={detailsContainer}>
+          <IconText data={{ imageSrc: 'calendar-today', text: date }} alignItems={'center'} style={details} />
+          <IconText data={{ imageSrc: 'access-time', text: `${startTime}${endTime ? ' - ' + endTime : ''}` }} alignItems={'center'} style={details} />
+          <IconText data={{ imageSrc: 'attach-money', text: cost || 'N/A' }} alignItems={'center'} style={details} />
+          <IconText data={{ imageSrc: 'location-pin', text: location }} alignItems={'center'} style={details} />
+          <IconText data={{ imageSrc: 'people-outline', text: `${usersJoined || '0'} people joined` }} alignItems={'center'} style={details} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <ButtonUjval data={{ label: 'Add to My Events' }} />
+        </View>
+      </View>
+    </ScrollView></>
   )
 }
 

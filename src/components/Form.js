@@ -7,10 +7,15 @@ import InputField from './InputField'
 import { HamburgerButtonBack } from './HamburgerButtonBack'
 import { useNavigation } from '@react-navigation/native'
 import ButtonUjval from './ButtonUjval'
+import { retrieveUserData } from '../screens/Sidebar'
 
 const resetFormData = (formData, formFields) => {
-  for (inputField of formFields) {
-    formData[inputField.label] = ''
+  for (let inputField of formFields) {
+    if (inputField.type == "Button") {
+      continue;
+    }
+
+    formData[inputField.label] = "";
   }
 }
 
@@ -28,10 +33,22 @@ const Form = (props) => {
     formData[label] = text
   }
 
-  const submitAction = () => {
+  const submitAction = async () => {
     for (const item of fields) {
       if (item.type == 'Button') {
         continue
+      }
+
+      if (!item.required && item.default && formData[item.label].length == 0) {
+        formData[item.label] = item.default;
+        continue;
+      }
+
+      if (item.type == "hidden") {
+        let userData = await retrieveUserData();
+        console.log(userData);
+        formData[item.label] = userData.id;
+        continue;
       }
 
       if (item.required && formData[item.label].length == 0) {
@@ -50,7 +67,6 @@ const Form = (props) => {
 
   return (
     <>
-      <HamburgerButtonBack />
       <View style={container}>
         <Text style={titleText}>{title}</Text>
         <Text style={instructionText}>* indicates required fields</Text>
@@ -67,17 +83,19 @@ const Form = (props) => {
               );
             }
 
-            return (
-              <InputField
-                label={item.label}
-                type={item.type}
-                required={item.required}
-                multiline={item.multiline}
-                options={item.options}
-                placeholder={item.placeholder}
-                updateData={updateData}
-              />
-            );
+            if (item.type != "hidden") {
+              return (
+                <InputField
+                  label={item.label}
+                  type={item.type}
+                  required={item.required}
+                  multiline={item.multiline}
+                  options={item.options}
+                  placeholder={item.placeholder}
+                  updateData={updateData}
+                />
+              );
+            }
           }}
           keyExtractor={(item, index) => index.toString()}
         />

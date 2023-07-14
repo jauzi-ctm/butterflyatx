@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 const parseDate = (date) => {
   if (date == null) {
     return null

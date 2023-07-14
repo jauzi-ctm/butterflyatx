@@ -1,37 +1,7 @@
-import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingHorizontal: 8,
-  },
-});
-
-const handleChangeText = (inputText) => {
-  setText(inputText);
-};
-
-const userFormFields = [
-  <>
-    <TextInput
-      placeholder="First Name"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Last Name"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-    <TextInput
-      placeholder="Age"
-      onChangeText={handleChangeText}
-      style={styles.input}
-    />
-  </>
+const userInfoFormFields = [
+  { label: "Name", type: "TextInput", required: true, placeholder: "Bob" },
+  { label: "Email Address", type: "TextInput", required: true, placeholder: "bob@gmail.com" },
+  { type: "Button" }
 ];
 
 const addEventFormFields = [
@@ -42,6 +12,8 @@ const addEventFormFields = [
   { label: "Date", type: "DatePicker", required: true, placeholder: "07/01/2023" },
   { label: "Start Time", type: "TimePicker", required: true, placeholder: "4:00pm" },
   { label: "End Time", type: "TimePicker", required: false, placeholder: "6:00pm", default: "" },
+  { label: "userId", type: "hidden" },
+  { label: "Users Joined", type: "hidden", default: "0" },
   { type: "Button" }
 ];
 const settingsFields = [
@@ -69,7 +41,9 @@ const startPickupGameFormFields = [
   { label: 'Date', type: 'DatePicker', required: true, placeholder: '06/21/2023' },
   { label: 'Start Time', type: 'TimePicker', required: true, placeholder: '3:00pm' },
   { label: 'Location', type: 'TextInput', required: true, placeholder: '123 Park Avenue' },
+  { label: "userId", type: "hidden" },
+  { label: "Users Joined", type: "hidden", default: "0" },
   { type: "Button" }
 ];
 
-export { userFormFields, addEventFormFields, startPickupGameFormFields, settingsFields };
+export { userInfoFormFields, addEventFormFields, startPickupGameFormFields, settingsFields };

@@ -3,16 +3,21 @@ import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 
 // function to add button
 // eslint-disable-next-line react/prop-types
-const ButtonUjval = ({ data }) => {
+const ButtonUjval = ({ data, text }) => {
   // eslint-disable-next-line react/prop-types
   const { label, whatAction } = data
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={whatAction}>
-        <Text style={styles.buttonText}>{label}</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity style={styles.button} onPress={whatAction}>
+      <Text style={[styles.buttonText, { textAlign: text }]}>{label}</Text>
+    </TouchableOpacity>
   )
+  // return (
+  //   <View style={styles.container}>
+  //     <TouchableOpacity style={styles.button} onPress={whatAction}>
+  //       <Text style={styles.buttonText}>{label}</Text>
+  //     </TouchableOpacity>
+  //   </View>
+  // )
 }
 
 const styles = StyleSheet.create({
@@ -26,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
-    alignSelf: 'center',
+    // alignSelf: 'center',
     margin: 10
   },
   buttonText: {
