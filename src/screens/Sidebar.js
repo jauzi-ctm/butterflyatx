@@ -52,6 +52,11 @@ const Sidebar = () => {
     whatAction: () => navigation.navigate('Settings')
   }
 
+  const handleClosePress = {
+    label: 'Close',
+    whatAction: () => navigation.goBack()
+  }
+
   const profilePicture = {
     imageSrc: 'person-outline',
     text: storedUserData?.username ? `Welcome ${storedUserData.username}!` : 'Welcome User!'
@@ -65,6 +70,7 @@ const Sidebar = () => {
         <ButtonUjval style={styles.button} data={handleEventDetailsPress} />
         <ButtonUjval style={styles.button} data={handleExploreEventsPress} />
         <ButtonUjval style={styles.button} data={handleSettingPress} />
+        <ButtonUjval style={styles.button} data={handleClosePress} />;
       </View>
     </View>
   )
