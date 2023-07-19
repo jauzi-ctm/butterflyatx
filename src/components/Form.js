@@ -8,6 +8,9 @@ import { HamburgerButtonBack } from './HamburgerButtonBack'
 import { useNavigation } from '@react-navigation/native'
 import ButtonUjval from './ButtonUjval'
 import { retrieveUserData } from '../screens/Sidebar'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from "@env";
+import axios from "axios";
 
 const resetFormData = (formData, formFields) => {
   for (let inputField of formFields) {
@@ -63,6 +66,37 @@ const Form = (props) => {
 
     submitForm()
     Alert.alert('Success', 'New event was created!', [{ onPress: navigation.goBack }])
+
+    let eventId;
+
+    if (fields[0].label == "Sport/Category") {
+      let response = await axios.get(PICKUP_GAMES_API);
+      // console.log("1", response);
+      eventId = "" + (parseInt(response.data[response.data.length - 1]["eventId"]) + 3);
+    }
+
+    if (fields[0].label == "Event Title") {
+      let response = await axios.get(INDIVIDUAL_EVENTS_API);
+      // console.log("2", response);
+      eventId = "" + (parseInt(response.data[response.data.length - 1]["eventId"]) + 3);
+    }
+
+    // console.log("3", eventId);
+
+    try {
+      // Retrieve the existing list of eventIds from AsyncStorage
+      const storedEventIds = await AsyncStorage.getItem('eventIds')
+      let existingEventIds = []
+
+      if (storedEventIds) {
+        existingEventIds = JSON.parse(storedEventIds)
+      }
+
+      existingEventIds.push(eventId);
+      await AsyncStorage.setItem('eventIds', JSON.stringify(existingEventIds))
+    } catch (error) {
+      console.log('Error storing EventId:', error)
+    }
   }
 
   return (

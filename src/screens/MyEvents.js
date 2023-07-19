@@ -122,7 +122,7 @@ const MyEvents = ({ item }) => {
                         eventId={item['eventId']} />
                 )}
                 keyExtractor={(item, index) => index.toString()}
-                ListEmptyComponent={() => (<Text style={{ textAlign: 'center' }}>Looks like there are no upcoming events. Add to this list by going to an event page and clicking on the "Add to My Events" button!</Text>)} />
+                ListEmptyComponent={() => (<Text style={{ textAlign: 'center', margin: 16 }}>Looks like there are no upcoming events. Add to this list by going to an event page and clicking on the "Add to My Events" button!</Text>)} />
         </View>
     )
 }

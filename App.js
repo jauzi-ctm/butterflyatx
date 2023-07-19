@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Sidebar, { retrieveUserData } from './src/screens/Sidebar.js'
@@ -8,7 +8,7 @@ import Form from './src/components/Form.js'
 import { addEventFormFields, startPickupGameFormFields } from './src/utilities/formInfo.js'
 import axios from 'axios'
 import PostScreen from './src/screens/PostScreen.js'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, Text } from 'react-native'
 import { PICKUP_GAMES_API, INDIVIDUAL_EVENTS_API } from '@env'
 import ProfileSettings from './src/screens/ProfileSettings.js'
 import SafeViewAndroid from './src/components/SafeViewAndroid.js'
@@ -20,23 +20,38 @@ import MyEvents from './src/screens/MyEvents.js'
 const Stack = createStackNavigator()
 
 const App = () => {
+  const [userExists, setUserExists] = useState(false);
+
   const formData1 = {}
   const formData2 = {}
+
   useEffect(() => {
-    retrieveUserData()
-  }, [])
+    (async () => {
+      const userData = await retrieveUserData();
+      setUserExists(userData != null);
+    })();
+  }, []);
+
+  if (!userExists) {
+    return (
+      <SafeAreaView style={[SafeViewAndroid.AndroidSafeArea, { backgroundColor: '#F2F2F2' }]}>
+        <Text style={{ textAlign: "center", fontSize: 24, marginHorizontal: 48, marginTop: 24 }}>Please create an account before exploring our app!</Text>
+        <ProfileSettings saveAction={() => { setUserExists(true) }} />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
       <PaperProvider theme={theme}>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Explore Events" component={ExploreEvents} options={{ headerLeft: () => (<HamburgerButton />) }} />
             <Stack.Screen name="Sidebar" component={Sidebar} options={{ headerShown: false }} />
+            <Stack.Screen name="Explore Events" component={ExploreEvents} options={{ headerLeft: () => (<HamburgerButton currentPage={"Explore Events"} />) }} />
             <Stack.Screen name="Event Details" component={EventDetails} />
             {/* <Stack.Screen name="PostScreen" component={PostScreen} /> */}
-            <Stack.Screen name="Settings" component={ProfileSettings} options={{ headerLeft: () => (<HamburgerButton />) }} />
-            <Stack.Screen name="My Events" component={MyEvents} options={{ headerLeft: () => (<HamburgerButton />) }} />
+            <Stack.Screen name="Settings" component={ProfileSettings} options={{ headerLeft: () => (<HamburgerButton currentPage={"Settings"} />) }} />
+            <Stack.Screen name="My Events" component={MyEvents} options={{ headerLeft: () => (<HamburgerButton currentPage={"My Events"} />) }} />
             <Stack.Screen name="Individual Event Form">
               {() => (
                 <Form

@@ -4,20 +4,20 @@ import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { retrieveUserData } from '../screens/Sidebar'
 
-export const HamburgerButton = (data) => {
+export const HamburgerButton = ({ currentPage }) => {
   const navigation = useNavigation()
 
   const openSidebar = () => {
-    navigation.navigate('Sidebar', { update: true })
+    navigation.navigate('Sidebar', { update: true, previousPage: currentPage })
     retrieveUserData()
   }
 
   return (
-        <SafeAreaView>
-            <TouchableOpacity onPress={openSidebar}>
-                <Image source={require('../../assets/hamburger.png')} style={styles.logoButton} />
-            </TouchableOpacity>
-        </SafeAreaView>
+    <SafeAreaView>
+      <TouchableOpacity onPress={openSidebar}>
+        <Image source={require('../../assets/hamburger.png')} style={styles.logoButton} />
+      </TouchableOpacity>
+    </SafeAreaView>
   )
 }
 

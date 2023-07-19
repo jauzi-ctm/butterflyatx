@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, StackActions } from '@react-navigation/native'
 import ButtonUjval from '../components/ButtonUjval'
 import { View, Text, StyleSheet } from 'react-native'
 import IconText from '../components/IconText'
@@ -33,7 +33,13 @@ export const retrieveUserData = async () => {
   }
 }
 
-const Sidebar = () => {
+const Sidebar = ({ route }) => {
+  let previousPage = "Explore Events";
+
+  if (route.params) {
+    previousPage = route.params.previousPage;
+  }
+
   const navigation = useNavigation()
   // getAllEventIds()
 
@@ -53,7 +59,9 @@ const Sidebar = () => {
   }
   const handleClosePress = {
     label: 'Close',
-    whatAction: () => navigation.goBack()
+    whatAction: () => {
+      navigation.navigate(previousPage);
+    }
   }
 
   const profilePicture = {

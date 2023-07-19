@@ -8,7 +8,7 @@ import { USER_API } from "@env";
 import InputField from '../components/InputField'
 import axios from "axios";
 // AsyncStorage.clear();
-const ProfileSettings = () => {
+const ProfileSettings = ({ saveAction }) => {
   const randomNum = randomNumber()
 
   const [age, setAge] = useState('')
@@ -64,7 +64,7 @@ const ProfileSettings = () => {
         axios.put(`${USER_API}/userId/${formData["userId"]}`, { "Username": formData["Username"], "Email Address": formData["Email Address"] }).then(response => { console.log("yay"); saveAsync(); });
       }
 
-      Alert.alert('Success', 'User data was saved successfully!')
+      Alert.alert('Success', 'User data was saved successfully!', [{ onPress: saveAction }]);
     } catch (error) {
       console.log('Error saving user data:', error)
     }
