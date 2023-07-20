@@ -22,10 +22,10 @@ export const retrieveUserData = async () => {
     if (value !== null) {
       const userData = JSON.parse(value)
       setStoredUserData(userData) // Update the storedUserData value
-      console.log('Retrieved username:', userData.username)
-      console.log('Retrieved age:', userData.age)
-      console.log('Retrieved email:', userData.email)
-      console.log('Retrieved userID:', userData.id)
+      // console.log('Retrieved username:', userData.username)
+      // console.log('Retrieved age:', userData.age)
+      // console.log('Retrieved email:', userData.email)
+      // console.log('Retrieved userID:', userData.id)
       return userData
     }
   } catch (error) {

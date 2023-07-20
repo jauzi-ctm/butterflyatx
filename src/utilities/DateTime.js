@@ -38,7 +38,7 @@ const parseTime = (date) => {
 }
 
 // format in: "MM/DD/YYYY"
-function toDateObject (format) {
+function toDateObject(format) {
   const args = format.split('/')
   const month = parseInt(args[0]) - 1
   const day = parseInt(args[1])
@@ -47,33 +47,41 @@ function toDateObject (format) {
   return new Date(year, month, day)
 }
 
-function isPast (date) {
+function isPast(date) {
   const current = new Date()
 
   if (date.getFullYear() < current.getFullYear()) {
     return true
   }
 
+  if (date.getFullYear() > current.getFullYear()) {
+    return false;
+  }
+
   if (date.getMonth() < current.getMonth()) {
     return true
+  }
+
+  if (date.getMonth() > current.getMonth()) {
+    return false;
   }
 
   return date.getDate() < current.getDate()
 }
 
 class DateTime {
-  constructor (type) {
+  constructor(type) {
     this.dateObject = new Date()
     this.isInitialized = false
     this.isDate = type === 'DatePicker'
   }
 
-  set (newDate) {
+  set(newDate) {
     this.dateObject = newDate
     this.isInitialized = true
   }
 
-  toString () {
+  toString() {
     if (!this.isInitialized) {
       return ''
     }
